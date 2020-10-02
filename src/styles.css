@@ -4,3 +4,10 @@
 html {
     padding: 1em;
 }
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('assets/font/PressStart2P.ttf') format('truetype');
+    font-weight: 400;
+    font-style: regular;
+}
