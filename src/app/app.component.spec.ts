@@ -31,4 +31,37 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.view).toBe(View.TITLE);
   });
+
+  it('should only render the title component in the title view', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.componentInstance.onViewChange(View.TITLE);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+
+    expect(compiled.querySelector('app-title'))          .not.toBeNull();
+    expect(compiled.querySelector('app-main-menu'))      .toBeNull();
+    expect(compiled.querySelector('app-highscore-table')).toBeNull();
+  });
+
+  it('should only render the menu component in the menu view', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.componentInstance.onViewChange(View.MAIN_MENU);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+
+    expect(compiled.querySelector('app-title'))          .toBeNull();
+    expect(compiled.querySelector('app-main-menu'))      .not.toBeNull();
+    expect(compiled.querySelector('app-highscore-table')).toBeNull();
+  });
+
+  it('should only render the highscore component in the highscore view', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.componentInstance.onViewChange(View.HIGHSCORES);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+
+    expect(compiled.querySelector('app-title'))          .toBeNull();
+    expect(compiled.querySelector('app-main-menu'))      .toBeNull();
+    expect(compiled.querySelector('app-highscore-table')).not.toBeNull();
+  });
 });
