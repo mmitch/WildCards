@@ -1,3 +1,7 @@
-<p>highscore-table works!</p>
+<h2>high scores</h2>
+
+<ul class="nes-list is-disc">
+  <li *ngFor="let highscore of highscores">{{ highscore.score }} {{ highscore.date | date:'yyyy-MM-dd' }} {{ highscore.name }}</li>
+</ul>
 
 <button class="nes-btn" (click)="showMainMenu()">Main Menu</button>
