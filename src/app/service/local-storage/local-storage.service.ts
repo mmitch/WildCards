@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Highscore } from '../models/highscore';
+import { Highscore } from 'src/app/model/highscore';
 
 const enum Item {
   HIGHSCORES = 'HIGHSCORES'

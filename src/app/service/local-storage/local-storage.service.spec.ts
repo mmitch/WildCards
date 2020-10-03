@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HighscoreTableComponent } from '../highscore-table/highscore-table.component';
-import { Highscore } from '../models/highscore';
+import { Highscore } from 'src/app/model/highscore';
 
 import { LocalStorageService } from './local-storage.service';
 

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { View } from '../view';
+import { View } from 'src/app/view';
 
 import { MainMenuComponent } from './main-menu.component';
 

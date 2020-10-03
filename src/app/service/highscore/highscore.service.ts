@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Highscore } from 'src/app/model/highscore';
 import { LocalStorageService } from '../local-storage/local-storage.service';
-import { Highscore } from '../models/highscore';
 
 const MAX_ENTRIES = 10;
 

@@ -1,15 +1,15 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { View } from '../view';
+import { View } from 'src/app/view';
 
 @Component({
-  selector: 'app-title',
-  templateUrl: './title.component.html',
-  styleUrls: ['./title.component.css']
+  selector: 'app-highscore-table',
+  templateUrl: './highscore-table.component.html',
+  styleUrls: ['./highscore-table.component.css']
 })
-export class TitleComponent implements OnInit {
+export class HighscoreTableComponent implements OnInit {
 
   @Output() viewChange = new EventEmitter<View>();
-
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -18,5 +18,4 @@ export class TitleComponent implements OnInit {
   public showMainMenu() {
     this.viewChange.emit(View.MAIN_MENU);
   }
-
 }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { View } from '../view';
+import { View } from 'src/app/view';
 
 @Component({
   selector: 'app-main-menu',
