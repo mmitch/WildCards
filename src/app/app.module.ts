@@ -5,16 +5,18 @@ import { AppComponent } from './app.component';
 import { TitleComponent } from './comp/title/title.component';
 import { MainMenuComponent } from './comp/main-menu/main-menu.component';
 import { HighscoreTableComponent } from './comp/highscore-table/highscore-table.component';
+import { LeadingZeroesPipe } from './pipe/leading-zeroes/leading-zeroes.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TitleComponent,
     MainMenuComponent,
-    HighscoreTableComponent
+    HighscoreTableComponent,
+    LeadingZeroesPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
