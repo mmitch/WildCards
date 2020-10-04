@@ -46,7 +46,6 @@
 ## concrete todos
 
 * `TitleComponent` should show license (also: add license everywhere)
-* `TitleComponent` should refer to original game/Play Store app
 
 ## more stuff/backlog (create milestones for this)
 

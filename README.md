@@ -2,6 +2,10 @@
 
 Project homepage: https://github.com/mmitch/PlaceHolder
 
+This is both a bare-bones remake of [Void Tyrant](https://play.google.com/store/apps/details?id=com.armorgames.voidtyrant) and an example project to teach myself some [Angular](https://angular.io).
+
+## Boilerplate
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
 
 ## Development server
