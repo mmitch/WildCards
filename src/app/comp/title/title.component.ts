@@ -15,7 +15,7 @@ export class TitleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public showMainMenu() {
+  public showMainMenu(): void {
     this.viewChange.emit(View.MAIN_MENU);
   }
 

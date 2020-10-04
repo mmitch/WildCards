@@ -16,7 +16,7 @@ export class AppComponent {
     title.setTitle('PlaceHolder');
   }
 
-  public onViewChange(newView: View) {
+  public onViewChange(newView: View): void {
     this.view = newView;
   }
 

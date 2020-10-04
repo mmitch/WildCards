@@ -13,15 +13,14 @@ export class HighscoreTableComponent implements OnInit {
   @Output() viewChange = new EventEmitter<View>();
 
   highscores: Highscore[] = [];
-  
-  constructor(private highscoreService: HighscoreService) { 
-  }
+
+  constructor(private highscoreService: HighscoreService) { }
 
   ngOnInit(): void {
     this.highscores = this.highscoreService.getHighscores();
   }
 
-  public showMainMenu() {
+  public showMainMenu(): void {
     this.viewChange.emit(View.MAIN_MENU);
   }
 }

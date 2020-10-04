@@ -21,7 +21,7 @@ describe('LocalStorageService', () => {
 
   afterEach(() => {
     localStorage.clear();
-  })
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
