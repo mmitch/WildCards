@@ -3,6 +3,8 @@ import { View } from 'src/app/view';
 
 import { TitleComponent } from './title.component';
 
+const PROJECT_URL = 'https://github.com/mmitch/PlaceHolder';
+
 describe('TitleComponent', () => {
   let component: TitleComponent;
   let fixture: ComponentFixture<TitleComponent>;
@@ -28,6 +30,21 @@ describe('TitleComponent', () => {
 
   it('should render the app name', () => {
     expect(html.querySelector('h1')?.textContent).toContain('PlaceHolder');
+  });
+
+  it('should link to the github repository', () => {
+    // given
+
+    // when
+    const project = html.querySelector<HTMLParagraphElement>('p#project');
+
+    // then
+    expect(project?.textContent).toContain('project homepage:');
+    expect(project?.textContent).toContain(PROJECT_URL);
+
+    const link = project?.querySelector('a');
+    expect(link?.href).toBe(PROJECT_URL);
+    expect(link?.textContent).toBe(PROJECT_URL);
   });
 
   it('should request switch to the main menu when the button is clicked', () => {

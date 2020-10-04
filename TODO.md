@@ -45,7 +45,6 @@
 
 ## concrete todos
 
-* `TitleComponent` should show Github project link
 * `TitleComponent` should show license (also: add license everywhere)
 * `TitleComponent` should refer to original game/Play Store app
 
