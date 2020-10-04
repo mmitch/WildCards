@@ -6,6 +6,7 @@ import { TitleComponent } from './title.component';
 describe('TitleComponent', () => {
   let component: TitleComponent;
   let fixture: ComponentFixture<TitleComponent>;
+  let html: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,6 +18,7 @@ describe('TitleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TitleComponent);
     component = fixture.componentInstance;
+    html = fixture.nativeElement;
     fixture.detectChanges();
   });
 
@@ -25,22 +27,20 @@ describe('TitleComponent', () => {
   });
 
   it('should render the app name', () => {
-    const fixture = TestBed.createComponent(TitleComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('PlaceHolder');
+    expect(html.querySelector('h1')?.textContent).toContain('PlaceHolder');
   });
 
   it('should request switch to the main menu when the button is clicked', () => {
-    const fixture = TestBed.createComponent(TitleComponent);
-    const comp = fixture.componentInstance;
-    spyOn(comp.viewChange, 'emit');
+    // given
+    spyOn(component.viewChange, 'emit');
 
+    // when
     // TODO: test method call or HTML element click?
     // comp.showMainMenu();
-    fixture.nativeElement.querySelector('button').click();
+    html.querySelector('button')?.click();
 
-    expect(comp.viewChange.emit).toHaveBeenCalledWith(View.MAIN_MENU);
+    // then
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.MAIN_MENU);
   });
 
   // TODO: it should show the github project link

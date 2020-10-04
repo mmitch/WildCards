@@ -6,6 +6,7 @@ import { MainMenuComponent } from './main-menu.component';
 describe('MainMenuComponent', () => {
   let component: MainMenuComponent;
   let fixture: ComponentFixture<MainMenuComponent>;
+  let html: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,6 +18,7 @@ describe('MainMenuComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MainMenuComponent);
     component = fixture.componentInstance;
+    html = fixture.nativeElement;
     fixture.detectChanges();
   });
 
@@ -25,26 +27,28 @@ describe('MainMenuComponent', () => {
   });
 
   it('should request switch to the title screen when the title button is clicked', () => {
-    const fixture = TestBed.createComponent(MainMenuComponent);
-    const comp = fixture.componentInstance;
-    spyOn(comp.viewChange, 'emit');
+    // given
+    spyOn(component.viewChange, 'emit');
 
+    // when
     // TODO: test method call or HTML element click?
     // comp.showTitle();
-    fixture.nativeElement.querySelector('button#title').click();
+    html.querySelector<HTMLButtonElement>('button#title')?.click();
 
-    expect(comp.viewChange.emit).toHaveBeenCalledWith(View.TITLE);
+    // then
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.TITLE);
   });
 
   it('should request switch to the highscore screen when the highscore button is clicked', () => {
-    const fixture = TestBed.createComponent(MainMenuComponent);
-    const comp = fixture.componentInstance;
-    spyOn(comp.viewChange, 'emit');
+    // given
+    spyOn(component.viewChange, 'emit');
 
+    // when
     // TODO: test method call or HTML element click?
     // comp.showHighScores();
-    fixture.nativeElement.querySelector('button#highscores').click();
+    html.querySelector<HTMLButtonElement>('button#highscores')?.click();
 
-    expect(comp.viewChange.emit).toHaveBeenCalledWith(View.HIGHSCORES);
+    // then
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.HIGHSCORES);
   });
 });

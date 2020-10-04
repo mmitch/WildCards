@@ -8,6 +8,7 @@ import { HighscoreTableComponent } from './highscore-table.component';
 describe('HighscoreTableComponent', () => {
   let component: HighscoreTableComponent;
   let fixture: ComponentFixture<HighscoreTableComponent>;
+  let html: HTMLElement;
   let highscoreServiceSpy: HighscoreService;
 
   // TODO: two separate beforeEach() methods? why?
@@ -22,6 +23,7 @@ describe('HighscoreTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HighscoreTableComponent);
     component = fixture.componentInstance;
+    html = fixture.nativeElement;
     fixture.detectChanges();
     highscoreServiceSpy =  TestBed.inject(HighscoreService);
   });
@@ -32,17 +34,15 @@ describe('HighscoreTableComponent', () => {
 
   it('should request switch to the main menu when the button is clicked', () => {
     // given
-    const fixture = TestBed.createComponent(HighscoreTableComponent);
-    const comp = fixture.componentInstance;
-    spyOn(comp.viewChange, 'emit');
+    spyOn(component.viewChange, 'emit');
 
     // when
     // TODO: test method call or HTML element click?
     // comp.showMainMenu();
-    fixture.nativeElement.querySelector('button').click();
+    html.querySelector('button')?.click();
 
     // then
-    expect(comp.viewChange.emit).toHaveBeenCalledWith(View.MAIN_MENU);
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.MAIN_MENU);
   });
 
   it('should show an empty list if no highscores are present', () => {
@@ -87,7 +87,7 @@ describe('HighscoreTableComponent', () => {
     component.ngOnInit();
     fixture.detectChanges();
 
-    // then
+    // when
     const list = getHighscoreList();
 
     // then
@@ -96,7 +96,7 @@ describe('HighscoreTableComponent', () => {
     expect(list[0].textContent).toBe('1000 ' + format(today, 'yyyy-MM-dd') + ' foo');
   });
 
-  function getHighscoreList() {
-    return fixture.nativeElement.querySelectorAll('ul li');
+  function getHighscoreList(): NodeListOf<HTMLLIElement> {
+    return html.querySelectorAll<HTMLLIElement>('ul li');
   }
 });

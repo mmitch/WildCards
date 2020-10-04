@@ -29,18 +29,27 @@ describe('HighscoreService', () => {
   });
 
   it('should return highscores after highscores have been added', () => {
+    // given
     service.addHighscore('foo', 5);
     service.addHighscore('bar', 3);
 
-    expect(service.getHighscores().length).toBe(2);
+    // when
+    const highscores = service.getHighscores();
+
+    // then
+    expect(highscores.length).toBe(2);
   });
 
   it('should sort highscores by score', () => {
+    // given
     service.addHighscore('foo', 5);
     service.addHighscore('bar', 3);
     service.addHighscore('baz', 10);
 
+    // when
     const highscores = service.getHighscores();
+
+    // then
     expect(highscores.length).toBe(3);
 
     expect(highscores[0].name).toBe('baz');
@@ -54,13 +63,17 @@ describe('HighscoreService', () => {
   });
 
   it('should only keep the top 10 highscores', () => {
+    // given
     for (let i = 0; i < 5; i++) {
       service.addHighscore('foo', 5);
       service.addHighscore('bar', 3);
       service.addHighscore('baz', 10);
     }
 
+    // when
     const highscores = service.getHighscores();
+
+    // then
     expect(highscores.length).toBe(10);
 
     expect(highscores[0].name).toBe('baz');

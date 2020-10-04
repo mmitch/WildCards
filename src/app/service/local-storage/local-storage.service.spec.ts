@@ -15,26 +15,46 @@ describe('LocalStorageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(LocalStorageService);
+
+    localStorage.clear();
   });
+
+  afterEach(() => {
+    localStorage.clear();
+  })
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
   it('should return empty highscore list if local storage is empty', () => {
-    localStorage.clear();
-    expect(service.getHighscores().length).toBe(0);
+    // given
+
+    // when
+    const highscores = service.getHighscores();
+
+    // then
+    expect(highscores.length).toBe(0);
   });
 
   it('should return existing highscores from local storage', () => {
-    localStorage.clear();
+    // given
     localStorage.setItem('HIGHSCORES', HIGHSCORES_STRING);
-    expect(service.getHighscores().length).toBe(2);
+
+    // when
+    const highscores = service.getHighscores();
+
+    // then
+    expect(highscores.length).toBe(2);
   });
 
   it('should write highscores to local storage', () => {
+    // given
+
+    // when
     service.setHighscores(HIGHSCORES);
+
+    // then
     expect(localStorage.getItem('HIGHSCORES')).toBe(HIGHSCORES_STRING);
-    localStorage.clear();
   });
 });
