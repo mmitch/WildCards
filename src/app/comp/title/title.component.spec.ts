@@ -35,15 +35,9 @@ describe('TitleComponent', () => {
     spyOn(component.viewChange, 'emit');
 
     // when
-    // TODO: test method call or HTML element click?
-    // comp.showMainMenu();
     html.querySelector('button')?.click();
 
     // then
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.MAIN_MENU);
   });
-
-  // TODO: it should show the github project link
-  // TODO: it should link to the original android app
-  // TODO: it should show the licence
 });

@@ -11,7 +11,6 @@ describe('HighscoreTableComponent', () => {
   let html: HTMLElement;
   let highscoreServiceSpy: HighscoreService;
 
-  // TODO: two separate beforeEach() methods? why?
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ HighscoreTableComponent ],
@@ -37,8 +36,6 @@ describe('HighscoreTableComponent', () => {
     spyOn(component.viewChange, 'emit');
 
     // when
-    // TODO: test method call or HTML element click?
-    // comp.showMainMenu();
     html.querySelector('button')?.click();
 
     // then
@@ -92,7 +89,6 @@ describe('HighscoreTableComponent', () => {
 
     // then
     expect(list.length).toBe(1);
-    // TODO: make leadingZeroes pipe work and expect leading zeroes here
     expect(list[0].textContent).toBe('1000 ' + format(today, 'yyyy-MM-dd') + ' foo');
   });
 

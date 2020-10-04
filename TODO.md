@@ -43,7 +43,13 @@
 * after route: return to route chooser
 * remove monster chooser at battle start (now defined by battle route)
 
-## more stuff (create milestones for this)
+## concrete todos
+
+* `TitleComponent` should show Github project link
+* `TitleComponent` should show license (also: add license everywhere)
+* `TitleComponent` should refer to original game/Play Store app
+
+## more stuff/backlog (create milestones for this)
 
 * add boss monsters
 * randomize monsters on battle route from a pool per route
@@ -58,9 +64,8 @@
 
 ## global stuff
 
-* main menu: component for list-selection
+* main menu: component for list-selection  
   combine radio-style selection (up/down/enter) with clickable buttons
-
 * support mouse-only usage
 * support touch-only usage
 * support keyboard-only usage (individual keys)
@@ -68,3 +73,11 @@
 
 ## mysteries
 
+* make `LeadingZeroPipe` work when used in `HighscoreTableComponent` for the score
+
+* in components, test only the `.ts` file or `.ts` plus `.html`?
+  * `component.onEvent() ... expect(component.value).toBe('x')` or
+  * `html.querySelector('button').click() ... expect(html.querySelector('div#value').textcontent).toBe('x')` ?
+
+* why do the tests have two `beforeEach()` methods?  
+  `async` for setting up the `TestBed`, then another normal one for setting the instance variables/fields

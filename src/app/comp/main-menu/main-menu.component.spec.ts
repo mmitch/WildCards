@@ -31,8 +31,6 @@ describe('MainMenuComponent', () => {
     spyOn(component.viewChange, 'emit');
 
     // when
-    // TODO: test method call or HTML element click?
-    // comp.showTitle();
     html.querySelector<HTMLButtonElement>('button#title')?.click();
 
     // then
@@ -44,8 +42,6 @@ describe('MainMenuComponent', () => {
     spyOn(component.viewChange, 'emit');
 
     // when
-    // TODO: test method call or HTML element click?
-    // comp.showHighScores();
     html.querySelector<HTMLButtonElement>('button#highscores')?.click();
 
     // then
