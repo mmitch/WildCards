@@ -97,6 +97,6 @@ describe('HighscoreTableComponent', () => {
   });
 
   function getHighscoreList(): NodeListOf<HTMLLIElement> {
-    return html.querySelectorAll<HTMLLIElement>('ul li');
+    return html.querySelectorAll<HTMLLIElement>('ol li');
   }
 });
