@@ -6,6 +6,7 @@ import { TitleComponent } from './comp/title/title.component';
 import { MainMenuComponent } from './comp/main-menu/main-menu.component';
 import { HighscoreTableComponent } from './comp/highscore-table/highscore-table.component';
 import { LeadingZeroesPipe } from './pipe/leading-zeroes/leading-zeroes.pipe';
+import { BattleComponent } from './comp/battle/battle.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { LeadingZeroesPipe } from './pipe/leading-zeroes/leading-zeroes.pipe';
     TitleComponent,
     MainMenuComponent,
     HighscoreTableComponent,
-    LeadingZeroesPipe
+    LeadingZeroesPipe,
+    BattleComponent
   ],
   imports: [
     BrowserModule,

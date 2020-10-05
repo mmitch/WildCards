@@ -47,4 +47,15 @@ describe('MainMenuComponent', () => {
     // then
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.HIGHSCORES);
   });
+
+  it('should request switch to the battle screen when the start battle button is clicked', () => {
+    // given
+    spyOn(component.viewChange, 'emit');
+
+    // when
+    html.querySelector<HTMLButtonElement>('button#battle')?.click();
+
+    // then
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.BATTLE);
+  });
 });

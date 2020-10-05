@@ -1,3 +1,4 @@
 <app-title *ngIf="view === allViews.TITLE" (viewChange)="onViewChange($event)"></app-title>
 <app-main-menu *ngIf="view === allViews.MAIN_MENU" (viewChange)="onViewChange($event)"></app-main-menu>
 <app-highscore-table *ngIf="view === allViews.HIGHSCORES" (viewChange)="onViewChange($event)"></app-highscore-table>
+<app-battle *ngIf="view === allViews.BATTLE" (viewChange)="onViewChange($event)"></app-battle>

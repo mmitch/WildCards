@@ -19,6 +19,10 @@ export class MainMenuComponent implements OnInit {
     this.viewChange.emit(View.TITLE);
   }
 
+  public startBattle(): void {
+    this.viewChange.emit(View.BATTLE);
+  }
+
   public showHighScores(): void {
     this.viewChange.emit(View.HIGHSCORES);
   }

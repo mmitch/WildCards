@@ -48,6 +48,7 @@ describe('AppComponent', () => {
     expect(html.querySelector('app-title'))          .not.toBeNull();
     expect(html.querySelector('app-main-menu'))      .toBeNull();
     expect(html.querySelector('app-highscore-table')).toBeNull();
+    expect(html.querySelector('app-battle'))         .toBeNull();
   });
 
   it('should only render the menu component in the menu view', () => {
@@ -61,6 +62,7 @@ describe('AppComponent', () => {
     expect(html.querySelector('app-title'))          .toBeNull();
     expect(html.querySelector('app-main-menu'))      .not.toBeNull();
     expect(html.querySelector('app-highscore-table')).toBeNull();
+    expect(html.querySelector('app-battle'))         .toBeNull();
   });
 
   it('should only render the highscore component in the highscore view', () => {
@@ -74,5 +76,20 @@ describe('AppComponent', () => {
     expect(html.querySelector('app-title'))          .toBeNull();
     expect(html.querySelector('app-main-menu'))      .toBeNull();
     expect(html.querySelector('app-highscore-table')).not.toBeNull();
+    expect(html.querySelector('app-battle'))         .toBeNull();
+  });
+
+  it('should only render the battle component in the battle view', () => {
+    // given
+
+    // when
+    fixture.componentInstance.onViewChange(View.BATTLE);
+    fixture.detectChanges();
+
+    // then
+    expect(html.querySelector('app-title'))          .toBeNull();
+    expect(html.querySelector('app-main-menu'))      .toBeNull();
+    expect(html.querySelector('app-highscore-table')).toBeNull();
+    expect(html.querySelector('app-battle'))         .not.toBeNull();
   });
 });
