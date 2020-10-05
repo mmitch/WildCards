@@ -1,1 +1,22 @@
-<p>battle works!</p>
+<div *ngIf="!battleStarted" class="nes-container with-title is-centered">
+    <p class="title">Enter a new battle</p>
+    <div class="nes-field">
+        <label for="player_name">Player name</label>
+        <input [value]="playerName" (input)="onNameChanged($event)" type="text" id="name_field" class="nes-input" [class.is-error]="isInvalidName">
+    </div>
+    <button class="nes-btn" (click)="onStartBattle()">Start battle</button>
+</div>
+
+<div *ngIf="battleStarted && !battleEnded" class="nes-container is-rounded is-dark with-title" id="battle">
+    <p class="title">Battle round</p>
+    <p>Name: {{ player?.name }}</p>
+    <p>Score: {{ player?.score }}</p>
+    <button class="nes-btn is-primary" (click)="onAttack()">Attack</button>
+</div>
+
+<div *ngIf="battleEnded" class="nes-container with-title is-centered">
+    <p class="title">Battle lost</p>
+    <p><span class="nes-text is-error">{{ player?.name }} is dead.</span></p>
+    <p>You achieved a score of {{ player?.score }}.</p>
+    <button class="nes-btn" (click)="onReturnToMainMenu()">Return to Main Menu</button>
+</div>

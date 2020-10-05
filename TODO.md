@@ -1,11 +1,7 @@
 ## milestone: can die
 
-* add Player with name and score
-* start game entry in main menu switches to new battle view
-* enter player name, create new player
-* random win/lose in a battle
-* on win: increment score, battle again
-* on lose: write highscore (refactor HighscoreService to accept Player object instead of various parameters)
+* refactor HighscoreService to accept Player object instead of various parameters
+* add tests to battle component
 
 ## milestone: continue
 
