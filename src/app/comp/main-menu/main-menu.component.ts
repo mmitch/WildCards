@@ -15,15 +15,15 @@ export class MainMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public showTitle(): void {
+  public onShowTitle(): void {
     this.viewChange.emit(View.TITLE);
   }
 
-  public startBattle(): void {
+  public onStartBattle(): void {
     this.viewChange.emit(View.BATTLE);
   }
 
-  public showHighScores(): void {
+  public onShowHighScores(): void {
     this.viewChange.emit(View.HIGHSCORES);
   }
 
