@@ -2,8 +2,13 @@ export class Player {
     name: string;
     score: number;
 
-    constructor(name: string) {
+    public static withName(name: string): Player {
+        return new Player({name, score: 0});
+    }
+
+
+    constructor({ name, score }: { name: string; score: number; }) {
         this.name = name;
-        this.score = 0;
+        this.score = score;
     }
 }

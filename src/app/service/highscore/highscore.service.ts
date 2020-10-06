@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Highscore } from 'src/app/model/highscore';
+import { Player } from 'src/app/model/player';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 
 const MAX_ENTRIES = 10;
@@ -15,8 +16,8 @@ export class HighscoreService {
     return this.localStorageService.getHighscores();
   }
 
-  public addHighscore(name: string, score: number): void {
-    const newScore: Highscore = { name, date: new Date(), score };
+  public addHighscore(player: Player): void {
+    const newScore = new Highscore(player.name, new Date(), player.score);
 
     const highscores = this.getHighscores();
     highscores.push(newScore);

@@ -37,7 +37,7 @@ export class BattleComponent implements OnInit {
     }
     this.isInvalidName = false;
     this.battleStarted = true;
-    this.player = new Player(this.playerName);
+    this.player = Player.withName(this.playerName);
   }
 
   public onAttack(): void {
@@ -50,7 +50,7 @@ export class BattleComponent implements OnInit {
     else {
       this.battleEnded = true;
       if (this.player) { // FIXME: remove this check when player is always there
-          this.highscoreService.addHighscore(this.player.name, this.player.score);
+          this.highscoreService.addHighscore(this.player);
       }
     }
   }

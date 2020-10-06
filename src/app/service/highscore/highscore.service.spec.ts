@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { Player } from 'src/app/model/player';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { LocalStorageServiceMock } from '../local-storage/local-storage.service.mock';
 
@@ -30,8 +31,8 @@ describe('HighscoreService', () => {
 
   it('should return highscores after highscores have been added', () => {
     // given
-    service.addHighscore('foo', 5);
-    service.addHighscore('bar', 3);
+    addHighscore('foo', 5);
+    addHighscore('bar', 3);
 
     // when
     const highscores = service.getHighscores();
@@ -42,9 +43,9 @@ describe('HighscoreService', () => {
 
   it('should sort highscores by score', () => {
     // given
-    service.addHighscore('foo', 5);
-    service.addHighscore('bar', 3);
-    service.addHighscore('baz', 10);
+    addHighscore('foo', 5);
+    addHighscore('bar', 3);
+    addHighscore('baz', 10);
 
     // when
     const highscores = service.getHighscores();
@@ -65,9 +66,9 @@ describe('HighscoreService', () => {
   it('should only keep the top 10 highscores', () => {
     // given
     for (let i = 0; i < 5; i++) {
-      service.addHighscore('foo', 5);
-      service.addHighscore('bar', 3);
-      service.addHighscore('baz', 10);
+      addHighscore('foo', 5);
+      addHighscore('bar', 3);
+      addHighscore('baz', 10);
     }
 
     // when
@@ -82,4 +83,8 @@ describe('HighscoreService', () => {
     expect(highscores[9].name).toBe('foo');
     expect(highscores[9].score).toBe(5);
   });
+
+  function addHighscore(name: string, score: number): void {
+    service.addHighscore(new Player({ name, score }));
+  }
 });

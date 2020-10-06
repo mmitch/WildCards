@@ -1,7 +1,3 @@
-## milestone: can die
-
-* refactor HighscoreService to accept Player object instead of various parameters
-* add tests to battle component
 
 ## milestone: continue
 
@@ -41,6 +37,7 @@
 
 ## concrete todos
 
+* add tests to battle component
 * `TitleComponent` should show license (also: add license everywhere)
 
 ## more stuff/backlog (create milestones for this)
@@ -75,3 +72,5 @@
 
 * why do the tests have two `beforeEach()` methods?  
   `async` for setting up the `TestBed`, then another normal one for setting the instance variables/fields
+
+* find the proper way for constructor overloading or any sort of different constructors in `Player`
