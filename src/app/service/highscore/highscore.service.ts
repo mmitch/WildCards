@@ -17,7 +17,7 @@ export class HighscoreService {
   }
 
   public addHighscore(player: Player): void {
-    const newScore = new Highscore(player.name, new Date(), player.score);
+    const newScore = new Highscore({ name: player.name, date: new Date(), score: player.score });
 
     const highscores = this.getHighscores();
     highscores.push(newScore);
