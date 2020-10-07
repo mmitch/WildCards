@@ -1,7 +1,7 @@
 <h2>highscores</h2>
 
 <ol>
-  <li *ngFor="let highscore of highscores">{{ highscore.score }} {{ highscore.date | date:'yyyy-MM-dd' }} {{ highscore.name }}</li>
+  <li *ngFor="let highscore of highscores">{{ highscore.score | leadingZeroes:8 }} {{ highscore.date | date:'yyyy-MM-dd' }} {{ highscore.name }}</li>
 </ol>
 
 <button class="nes-btn" (click)="showMainMenu()">Main Menu</button>

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { format } from 'date-fns';
+import { PipesModule } from 'src/app/pipe/pipes-module';
 import { HighscoreService } from 'src/app/service/highscore/highscore.service';
 import { View } from 'src/app/view';
 
@@ -15,6 +16,7 @@ describe('HighscoreTableComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ HighscoreTableComponent ],
       providers: [ HighscoreService ],
+      imports: [ PipesModule ],
     })
     .compileComponents();
   });
@@ -89,7 +91,7 @@ describe('HighscoreTableComponent', () => {
 
     // then
     expect(list.length).toBe(1);
-    expect(list[0].textContent).toBe('1000 ' + format(today, 'yyyy-MM-dd') + ' foo');
+    expect(list[0].textContent).toBe('00001000 ' + format(today, 'yyyy-MM-dd') + ' foo');
   });
 
   function getHighscoreList(): NodeListOf<HTMLLIElement> {

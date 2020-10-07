@@ -64,8 +64,6 @@
 
 ## mysteries
 
-* make `LeadingZeroPipe` work when used in `HighscoreTableComponent` for the score
-
 * in components, test only the `.ts` file or `.ts` plus `.html`?
   * `component.onEvent() ... expect(component.value).toBe('x')` or
   * `html.querySelector('button').click() ... expect(html.querySelector('div#value').textcontent).toBe('x')` ?
