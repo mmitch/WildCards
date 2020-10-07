@@ -2,11 +2,7 @@ import { LeadingZeroesPipe } from './leading-zeroes.pipe';
 
 describe('LeadingzeroesPipe', () => {
 
-  let pipe: LeadingZeroesPipe;
-
-  beforeEach(() => {
-    pipe = new LeadingZeroesPipe();
-  });
+  const pipe = new LeadingZeroesPipe();
 
   it('create an instance', () => {
     expect(pipe).toBeTruthy();
