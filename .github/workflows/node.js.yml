@@ -31,8 +31,8 @@ jobs:
       run: npm run test:ci
     - name: Run e2e tests
       run: |
-        npx webdriver-manager update
-        npm run e2e
+        npx webdriver-manager update --standalone=false --chrome=true --gecko=false --versions.chrome 85.0.4183.121
+        npm run e2e:ci
     - name: Upload coverage to CodeCov
       run: |
         npm install codecov
