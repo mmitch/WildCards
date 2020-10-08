@@ -38,7 +38,7 @@
 ## concrete todos
 
 * add tests to battle component
-* `TitleComponent` should show license (also: add license everywhere)
+* `TitleComponent` should show license
 
 ## more stuff/backlog (create milestones for this)
 
