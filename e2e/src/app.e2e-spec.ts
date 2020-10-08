@@ -1,7 +1,7 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project PlaceHolder', () => {
+describe('workspace-project WildCards', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('workspace-project PlaceHolder', () => {
 
   it('should display title screen', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('PlaceHolder');
+    expect(page.getTitleText()).toEqual('Wild Cards');
   });
 
   // TODO: This fails with Firefox, longstanding bug in Protractor

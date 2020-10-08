@@ -13,7 +13,7 @@ export class AppComponent {
   allViews = View;
 
   constructor(private title: Title) {
-    title.setTitle('PlaceHolder');
+    title.setTitle('Wild Cards');
   }
 
   public onViewChange(newView: View): void {

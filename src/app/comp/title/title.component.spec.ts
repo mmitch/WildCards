@@ -3,7 +3,7 @@ import { View } from 'src/app/view';
 
 import { TitleComponent } from './title.component';
 
-const PROJECT_URL = 'https://github.com/mmitch/PlaceHolder';
+const PROJECT_URL = 'https://github.com/mmitch/WildCards';
 const VOID_TYRANT_URL = 'https://play.google.com/store/apps/details?id=com.armorgames.voidtyrant';
 
 describe('TitleComponent', () => {
@@ -30,7 +30,7 @@ describe('TitleComponent', () => {
   });
 
   it('should render the app name', () => {
-    expect(html.querySelector('h1')?.textContent).toContain('PlaceHolder');
+    expect(html.querySelector('h1')?.textContent).toContain('Wild Cards');
   });
 
   it('should link to the github repository', () => {

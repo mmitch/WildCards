@@ -28,9 +28,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'PlaceHolder'`, () => {
+  it(`should have as title 'Wild Cards'`, () => {
     const titleService = TestBed.inject(Title);
-    expect(titleService.getTitle()).toEqual('PlaceHolder');
+    expect(titleService.getTitle()).toEqual('Wild Cards');
   });
 
   it('should initially render the title screen', () => {

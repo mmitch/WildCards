@@ -1,6 +1,6 @@
-# PlaceHolder
+# Wild Cards
 
-Project homepage: https://github.com/mmitch/PlaceHolder
+Project homepage: https://github.com/mmitch/WildCards
 
 This is both a bare-bones remake of [Void Tyrant](https://play.google.com/store/apps/details?id=com.armorgames.voidtyrant) and an example project to teach myself some [Angular](https://angular.io).
 
