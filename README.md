@@ -1,3 +1,7 @@
+[![Code coverage status](https://codecov.io/github/mmitch/WildCards/coverage.svg?branch=master)](https://codecov.io/github/mmitch/WildCards?branch=master)
+[![Node.js CI status](https://github.com/mmitch/WildCards/workflows/Node.js%20CI/badge.svg?branch=master)](https://github.com/mmitch/actions)
+[![CodeQL status](https://github.com/mmitch/WildCards/workflows/CodeQL/badge.svg?branch=master)](https://github.com/mmitch/actions)
+
 # Wild Cards
 
 Project homepage: https://github.com/mmitch/WildCards
