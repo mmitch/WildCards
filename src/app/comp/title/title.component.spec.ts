@@ -24,6 +24,10 @@ import { View } from 'src/app/view';
 import { TitleComponent } from './title.component';
 
 const PROJECT_URL = 'https://github.com/mmitch/WildCards';
+const AUTHOR = 'Christian Garbs';
+const AUTHOR_LINK = 'https://www.cgarbs.de/';
+const LICENSE = 'GNU GPL v3 or later';
+const LICENSE_URL = 'http://www.gnu.org/licenses/';
 const VOID_TYRANT_URL = 'https://play.google.com/store/apps/details?id=com.armorgames.voidtyrant';
 
 describe('TitleComponent', () => {
@@ -60,12 +64,42 @@ describe('TitleComponent', () => {
     const project = html.querySelector<HTMLParagraphElement>('p#project');
 
     // then
-    expect(project?.textContent).toContain('project homepage:');
+    expect(project?.textContent).toContain('Project homepage:');
     expect(project?.textContent).toContain(PROJECT_URL);
 
     const link = project?.querySelector('a');
     expect(link?.href).toBe(PROJECT_URL);
     expect(link?.textContent).toBe(PROJECT_URL);
+  });
+
+  it('should display copyright information', () => {
+    // given
+
+    // when
+    const project = html.querySelector<HTMLParagraphElement>('p#copyright');
+
+    // then
+    expect(project?.textContent).toContain('Copyright (C) 20');
+    expect(project?.textContent).toContain(AUTHOR);
+
+    const link = project?.querySelector('a');
+    expect(link?.href).toBe(AUTHOR_LINK);
+    expect(link?.textContent).toBe(AUTHOR);
+  });
+
+  it('should display the license', () => {
+    // given
+
+    // when
+    const project = html.querySelector<HTMLParagraphElement>('p#license');
+
+    // then
+    expect(project?.textContent).toContain('Licensed under');
+    expect(project?.textContent).toContain(LICENSE);
+
+    const link = project?.querySelector('a');
+    expect(link?.href).toBe(LICENSE_URL);
+    expect(link?.textContent).toBe(LICENSE);
   });
 
   it('should honor its Void Tyrant heritage', () => {
