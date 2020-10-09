@@ -9,7 +9,8 @@ on:
     types: [opened]
 
 jobs:
-  build:
+  karma:
+    name: Developer build and Karma tests in Node.js matrix
 
     runs-on: ubuntu-latest
 
@@ -23,17 +24,33 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Build app
+    - name: Build app in development mode
       run: |
         npm ci
         npm run build --if-present
     - name: Run Karma tests and measure coverage
       run: npm run test:ci
-    - name: Run e2e tests
-      run: |
-        npx webdriver-manager update --standalone=false --chrome=true --gecko=false --versions.chrome 85.0.4183.121
-        npm run e2e:ci
     - name: Upload coverage to CodeCov
       run: |
         npm install codecov
         ./node_modules/.bin/codecov
+
+  protractor:
+    name: Production build and Protractor tests in browser matrix
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Build app in production mode
+      run: |
+        npm ci
+        npm run build:prod --if-present
+    - name: Run e2e tests
+      run: |
+        npx webdriver-manager update --standalone=false --chrome=true --gecko=false --versions.chrome 85.0.4183.121
+        npm run e2e:ci
