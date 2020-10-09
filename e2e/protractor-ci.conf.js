@@ -5,12 +5,23 @@
 const baseConf = require('./protractor.conf');
 
 const overrides = {
-  capabilities: {
+  capabilities: null,
+  multiCapabilities: [{
+    logName: 'Chrome headless',
     browserName: 'chrome',
     chromeOptions: {
       args: ['--headless', '--disable-gpu'],
     },
-  },
+  }, {
+    logName: 'Chrome headless (iPhone 6/7/8)',
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['--headless', '--disable-gpu'],
+      mobileEmulation: {
+        deviceName: 'iPhone 6/7/8'
+      },
+    },
+  }]
 };
 
 /**
