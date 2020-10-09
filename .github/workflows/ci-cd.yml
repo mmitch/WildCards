@@ -58,7 +58,7 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
 
-    if: ${{ github.event_name == 'push' && github.ref == 'ref/heads/master' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
 
     needs: [karma, protractor]
 
