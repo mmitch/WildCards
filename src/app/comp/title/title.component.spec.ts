@@ -102,6 +102,17 @@ describe('TitleComponent', () => {
     expect(link?.textContent).toBe(LICENSE);
   });
 
+  it('should display the build version placeholder', () => {
+    // given
+
+    // when
+    const project = html.querySelector<HTMLParagraphElement>('p#build');
+
+    // then
+    expect(project?.textContent).toContain('built from');
+    expect(project?.textContent).toContain('development');
+  });
+
   it('should honor its Void Tyrant heritage', () => {
     // given
 
