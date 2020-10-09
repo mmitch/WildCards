@@ -21,7 +21,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { View } from 'src/app/view';
 import { BuildInfo } from 'src/environments/buildinfo';
- 
+
 @Component({
   selector: 'app-title',
   templateUrl: './title.component.html',
