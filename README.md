@@ -5,6 +5,7 @@
 # Wild Cards
 
 Project homepage: https://github.com/mmitch/WildCards
+Demo version: https://mmitch.github.io/WildCards/
 
 This is both a bare-bones remake of [Void Tyrant](https://play.google.com/store/apps/details?id=com.armorgames.voidtyrant) and an example project to teach myself some [Angular](https://angular.io).
 
