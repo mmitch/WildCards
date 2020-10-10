@@ -46,4 +46,8 @@ export class LocalStorageService {
   public setPlayer(player: Player): void {
     localStorage.setItem(Item.PLAYER, JSON.stringify(player));
   }
+
+  public deletePlayer(): void {
+    localStorage.removeItem(Item.PLAYER);
+  }
 }

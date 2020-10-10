@@ -76,6 +76,7 @@ export class BattleComponent implements OnInit {
       if (this.player) { // FIXME: remove this check when player is always there
           this.highscoreService.addHighscore(this.player);
       }
+      this.storageService.deletePlayer();
     }
   }
 

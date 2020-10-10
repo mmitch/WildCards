@@ -47,6 +47,10 @@ export class LocalStorageServiceMock implements LocalStorageService {
     this.player = this.copy(player);
   }
 
+  public deletePlayer(): void {
+    this.player = undefined;
+  }
+
   private copy<T>(obj: T): T {
     return JSON.parse(JSON.stringify(obj));
   }

@@ -94,4 +94,15 @@ describe('LocalStorageService', () => {
     // then
     expect(localStorage.getItem('PLAYER')).toBe(PLAYER_STRING);
   });
+
+  it('should delete player from local storage', () => {
+    // given
+    service.setPlayer(PLAYER);
+
+    // when
+    service.deletePlayer();
+
+    // then
+    expect(localStorage.getItem('PLAYER')).toBeNull();
+  });
 });
