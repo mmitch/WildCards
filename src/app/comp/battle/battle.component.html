@@ -32,6 +32,7 @@
     <p>Name: {{ player?.name }}</p>
     <p>Score: {{ player?.score }}</p>
     <button class="nes-btn is-primary" (click)="onAttack()">Attack</button>
+    <button class="nes-btn" (click)="onSave()">Save and return to title</button>
 </div>
 
 <div *ngIf="battleEnded" class="nes-container with-title is-centered">

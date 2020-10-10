@@ -21,6 +21,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Player } from 'src/app/model/player';
 import { HighscoreService } from 'src/app/service/highscore/highscore.service';
+import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
 import { View } from 'src/app/view';
 
 @Component({
@@ -39,7 +40,10 @@ export class BattleComponent implements OnInit {
 
   player?: Player; // FIXME: always have a Player here
 
-  constructor(private highscoreService: HighscoreService) { }
+  constructor(
+    private highscoreService: HighscoreService,
+    private storageService: LocalStorageService)
+    { }
 
   ngOnInit(): void {
   }
@@ -73,6 +77,13 @@ export class BattleComponent implements OnInit {
           this.highscoreService.addHighscore(this.player);
       }
     }
+  }
+
+  public onSave(): void {
+    if (this.player) { // FIXME: remove this check when player is always there
+      this.storageService.setPlayer(this.player);
+    }
+    this.onReturnToMainMenu();
   }
 
   public onReturnToMainMenu(): void {

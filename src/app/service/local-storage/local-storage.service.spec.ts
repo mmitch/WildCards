@@ -20,6 +20,7 @@
 
 import { TestBed } from '@angular/core/testing';
 import { Highscore } from 'src/app/model/highscore';
+import { Player } from 'src/app/model/player';
 
 import { LocalStorageService } from './local-storage.service';
 
@@ -28,6 +29,12 @@ const HIGHSCORES: Highscore[] = [
   { name: 'bar', date: new Date(), score:  7 },
 ];
 const HIGHSCORES_STRING = JSON.stringify(HIGHSCORES);
+
+const PLAYER: Player = {
+  name: 'foo',
+  score: 1337,
+};
+const PLAYER_STRING = JSON.stringify(PLAYER);
 
 describe('LocalStorageService', () => {
   let service: LocalStorageService;
@@ -76,5 +83,15 @@ describe('LocalStorageService', () => {
 
     // then
     expect(localStorage.getItem('HIGHSCORES')).toBe(HIGHSCORES_STRING);
+  });
+
+  it('should write player to local storage', () => {
+    // given
+
+    // when
+    service.setPlayer(PLAYER);
+
+    // then
+    expect(localStorage.getItem('PLAYER')).toBe(PLAYER_STRING);
   });
 });

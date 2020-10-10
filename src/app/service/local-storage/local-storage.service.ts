@@ -20,9 +20,11 @@
 
 import { Injectable } from '@angular/core';
 import { Highscore } from 'src/app/model/highscore';
+import { Player } from 'src/app/model/player';
 
 const enum Item {
-  HIGHSCORES = 'HIGHSCORES'
+  HIGHSCORES = 'HIGHSCORES',
+  PLAYER = 'PLAYER',
 }
 
 @Injectable({
@@ -39,5 +41,9 @@ export class LocalStorageService {
 
   public setHighscores(highscores: Highscore[]): void {
     localStorage.setItem(Item.HIGHSCORES, JSON.stringify(highscores));
+  }
+
+  public setPlayer(player: Player): void {
+    localStorage.setItem(Item.PLAYER, JSON.stringify(player));
   }
 }

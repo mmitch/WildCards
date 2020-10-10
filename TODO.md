@@ -1,9 +1,6 @@
 
 ## milestone: continue
 
-* on win: ask save/continue
-* on continue: battle again as before
-* on save: write Player to LocalStorage
 * add restart option to main menu (only of Player is currently saved)
 * extract Player creation (ask for name) to extra component
 * warn when creating a new Player while a saved game exists

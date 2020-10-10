@@ -20,6 +20,7 @@
 
 import { Injectable } from '@angular/core';
 import { Highscore } from 'src/app/model/highscore';
+import { Player } from 'src/app/model/player';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
@@ -28,6 +29,7 @@ import { LocalStorageService } from './local-storage.service';
 export class LocalStorageServiceMock implements LocalStorageService {
 
   private highscores: Highscore[];
+  private player?: Player;
 
   constructor() {
     this.highscores = [];
@@ -41,4 +43,11 @@ export class LocalStorageServiceMock implements LocalStorageService {
     this.highscores = [...highscores];
   }
 
+  public setPlayer(player: Player): void {
+    this.player = this.copy(player);
+  }
+
+  private copy<T>(obj: T): T {
+    return JSON.parse(JSON.stringify(obj));
+  }
 }
