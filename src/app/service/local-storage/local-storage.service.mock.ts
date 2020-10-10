@@ -43,6 +43,10 @@ export class LocalStorageServiceMock implements LocalStorageService {
     this.highscores = [...highscores];
   }
 
+  public getPlayer(): Player | undefined {
+    return this.player;
+  }
+
   public setPlayer(player: Player): void {
     this.player = this.copy(player);
   }

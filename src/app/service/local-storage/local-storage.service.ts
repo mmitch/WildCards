@@ -43,6 +43,11 @@ export class LocalStorageService {
     localStorage.setItem(Item.HIGHSCORES, JSON.stringify(highscores));
   }
 
+  public getPlayer(): Player | undefined {
+    const player = localStorage.getItem(Item.PLAYER);
+    return player ? JSON.parse(player) : undefined;
+  }
+
   public setPlayer(player: Player): void {
     localStorage.setItem(Item.PLAYER, JSON.stringify(player));
   }

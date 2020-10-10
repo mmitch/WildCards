@@ -105,4 +105,25 @@ describe('LocalStorageService', () => {
     // then
     expect(localStorage.getItem('PLAYER')).toBeNull();
   });
+
+  it('should read a saved player', () => {
+    // given
+    localStorage.setItem('PLAYER', PLAYER_STRING);
+
+    // when
+    const player = service.getPlayer();
+
+    // then
+    expect(player).toEqual(PLAYER);
+  });
+
+  it('should return undefined if no player was saved', () => {
+    // given
+
+    // when
+    const player = service.getPlayer();
+
+    // then
+    expect(player).toBeUndefined();
+  });
 });

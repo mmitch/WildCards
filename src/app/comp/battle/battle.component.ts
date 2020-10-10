@@ -46,6 +46,11 @@ export class BattleComponent implements OnInit {
     { }
 
   ngOnInit(): void {
+    const savedPlayer = this.storageService.getPlayer();
+    if (savedPlayer) {
+      this.player = savedPlayer;
+      this.battleStarted = true;
+    }
   }
 
   public onNameChanged(event: Event): void {
