@@ -20,52 +20,39 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Player } from 'src/app/model/player';
-import { HighscoreService } from 'src/app/service/highscore/highscore.service';
 import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
 import { View } from 'src/app/view';
 
 @Component({
-  selector: 'app-battle',
-  templateUrl: './battle.component.html',
-  styleUrls: ['./battle.component.css']
+  selector: 'app-create-player',
+  templateUrl: './create-player.component.html',
+  styleUrls: ['./create-player.component.css']
 })
-export class BattleComponent implements OnInit {
+export class CreatePlayerComponent implements OnInit {
 
   @Output() viewChange = new EventEmitter<View>();
 
-  battleEnded = false;
+  playerName = '';
+  isInvalidName = false;
 
-  player: Player;
-
-  constructor(
-    private highscoreService: HighscoreService,
-    private storageService: LocalStorageService)
-    {
-      const savedPlayer = this.storageService.getPlayer();
-      this.player = savedPlayer ? savedPlayer : Player.withName('Jane Doe');
-    }
+  constructor(private storageService: LocalStorageService) { }
 
   ngOnInit(): void {
   }
 
-  public onAttack(): void {
-    if (Math.random() < 0.7) {
-      this.player.score++;
-      // FIXME: add flash Animation here
-    }
-    else {
-      this.battleEnded = true;
-      this.highscoreService.addHighscore(this.player);
-      this.storageService.deletePlayer();
+  public onNameChanged(event: Event): void {
+    if (event.target) {
+      this.playerName = (event.target as HTMLInputElement).value;
     }
   }
 
-  public onSave(): void {
-    this.storageService.setPlayer(this.player);
-    this.onReturnToMainMenu();
-  }
-
-  public onReturnToMainMenu(): void {
-    this.viewChange.emit(View.MAIN_MENU);
+  public onCreatePlayer(): void {
+    if (this.playerName == null || this.playerName.length === 0) {
+      this.isInvalidName = true;
+      return;
+    }
+    this.isInvalidName = false;
+    this.storageService.setPlayer(Player.withName(this.playerName));
+    this.viewChange.emit(View.BATTLE);
   }
 }

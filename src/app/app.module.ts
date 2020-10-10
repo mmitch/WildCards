@@ -27,6 +27,7 @@ import { MainMenuComponent } from './comp/main-menu/main-menu.component';
 import { HighscoreTableComponent } from './comp/highscore-table/highscore-table.component';
 import { LeadingZeroesPipe } from './pipe/leading-zeroes/leading-zeroes.pipe';
 import { BattleComponent } from './comp/battle/battle.component';
+import { CreatePlayerComponent } from './comp/create-player/create-player.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BattleComponent } from './comp/battle/battle.component';
     MainMenuComponent,
     HighscoreTableComponent,
     LeadingZeroesPipe,
-    BattleComponent
+    BattleComponent,
+    CreatePlayerComponent
   ],
   imports: [
     BrowserModule,

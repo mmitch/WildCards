@@ -22,3 +22,4 @@
 <app-main-menu *ngIf="view === allViews.MAIN_MENU" (viewChange)="onViewChange($event)"></app-main-menu>
 <app-highscore-table *ngIf="view === allViews.HIGHSCORES" (viewChange)="onViewChange($event)"></app-highscore-table>
 <app-battle *ngIf="view === allViews.BATTLE" (viewChange)="onViewChange($event)"></app-battle>
+<app-create-player *ngIf="view === allViews.CREATE_PLAYER" (viewChange)="onViewChange($event)"></app-create-player>

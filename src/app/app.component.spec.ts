@@ -69,6 +69,7 @@ describe('AppComponent', () => {
     expect(html.querySelector('app-main-menu'))      .toBeNull();
     expect(html.querySelector('app-highscore-table')).toBeNull();
     expect(html.querySelector('app-battle'))         .toBeNull();
+    expect(html.querySelector('app-create-player'))  .toBeNull();
   });
 
   it('should only render the menu component in the menu view', () => {
@@ -83,6 +84,7 @@ describe('AppComponent', () => {
     expect(html.querySelector('app-main-menu'))      .not.toBeNull();
     expect(html.querySelector('app-highscore-table')).toBeNull();
     expect(html.querySelector('app-battle'))         .toBeNull();
+    expect(html.querySelector('app-create-player'))  .toBeNull();
   });
 
   it('should only render the highscore component in the highscore view', () => {
@@ -97,6 +99,7 @@ describe('AppComponent', () => {
     expect(html.querySelector('app-main-menu'))      .toBeNull();
     expect(html.querySelector('app-highscore-table')).not.toBeNull();
     expect(html.querySelector('app-battle'))         .toBeNull();
+    expect(html.querySelector('app-create-player'))  .toBeNull();
   });
 
   it('should only render the battle component in the battle view', () => {
@@ -111,5 +114,21 @@ describe('AppComponent', () => {
     expect(html.querySelector('app-main-menu'))      .toBeNull();
     expect(html.querySelector('app-highscore-table')).toBeNull();
     expect(html.querySelector('app-battle'))         .not.toBeNull();
+    expect(html.querySelector('app-create-player'))  .toBeNull();
+  });
+
+  it('should only render the create player component in the create player view', () => {
+    // given
+
+    // when
+    fixture.componentInstance.onViewChange(View.CREATE_PLAYER);
+    fixture.detectChanges();
+
+    // then
+    expect(html.querySelector('app-title'))          .toBeNull();
+    expect(html.querySelector('app-main-menu'))      .toBeNull();
+    expect(html.querySelector('app-highscore-table')).toBeNull();
+    expect(html.querySelector('app-battle'))         .toBeNull();
+    expect(html.querySelector('app-create-player'))  .not.toBeNull();
   });
 });

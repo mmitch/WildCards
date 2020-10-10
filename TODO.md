@@ -2,7 +2,6 @@
 ## milestone: continue
 
 * add restart option to main menu (only of Player is currently saved)
-* extract Player creation (ask for name) to extra component
 * warn when creating a new Player while a saved game exists
 
 ## milestone: minimal game
@@ -69,3 +68,5 @@
   `async` for setting up the `TestBed`, then another normal one for setting the instance variables/fields
 
 * find the proper way for constructor overloading or any sort of different constructors in `Player`
+
+* proper handling of missing `Player` in `BattleComponent` constructor

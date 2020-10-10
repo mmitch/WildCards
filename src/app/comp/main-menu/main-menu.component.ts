@@ -40,7 +40,7 @@ export class MainMenuComponent implements OnInit {
   }
 
   public onStartBattle(): void {
-    this.viewChange.emit(View.BATTLE);
+    this.viewChange.emit(View.CREATE_PLAYER);
   }
 
   public onShowHighScores(): void {

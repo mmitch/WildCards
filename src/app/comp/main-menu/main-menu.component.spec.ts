@@ -68,7 +68,7 @@ describe('MainMenuComponent', () => {
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.HIGHSCORES);
   });
 
-  it('should request switch to the battle screen when the start battle button is clicked', () => {
+  it('should request switch to the create player screen when the start battle button is clicked', () => {
     // given
     spyOn(component.viewChange, 'emit');
 
@@ -76,6 +76,6 @@ describe('MainMenuComponent', () => {
     html.querySelector<HTMLButtonElement>('button#battle')?.click();
 
     // then
-    expect(component.viewChange.emit).toHaveBeenCalledWith(View.BATTLE);
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.CREATE_PLAYER);
   });
 });
