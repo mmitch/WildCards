@@ -13,8 +13,8 @@
 * versionize Player object
 * disallow reload of older Player (show message?)
 * add player health
-* implement real battle against a stock enemy
-* implement a Deck class
+* implement real battle against a stock enemy using constants
+* extract constants to objects (Player, Enemy, Deck)
 
 ## milestone: useful game
 
@@ -38,6 +38,7 @@
 ## concrete todos
 
 * add tests to battle component
+* list used assets (CSS, Font) in README besides Angular
 
 ## more stuff/backlog (create milestones for this)
 
