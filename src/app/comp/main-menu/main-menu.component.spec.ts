@@ -53,10 +53,9 @@ describe('MainMenuComponent', () => {
 
   it('should request switch to the title screen when the title button is clicked', () => {
     // given
-    spyOn(component.viewChange, 'emit');
 
     // when
-    html.querySelector<HTMLButtonElement>('button#title')?.click();
+    getButton('title')?.click();
 
     // then
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.TITLE);
@@ -64,10 +63,9 @@ describe('MainMenuComponent', () => {
 
   it('should request switch to the highscore screen when the highscore button is clicked', () => {
     // given
-    spyOn(component.viewChange, 'emit');
 
     // when
-    html.querySelector<HTMLButtonElement>('button#highscores')?.click();
+    getButton('highscores')?.click();
 
     // then
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.HIGHSCORES);
@@ -75,10 +73,9 @@ describe('MainMenuComponent', () => {
 
   it('should request switch to the create player screen when the start battle button is clicked', () => {
     // given
-    spyOn(component.viewChange, 'emit');
 
     // when
-    html.querySelector<HTMLButtonElement>('button#battle')?.click();
+    getButton('battle')?.click();
 
     // then
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.CREATE_PLAYER);
@@ -88,10 +85,9 @@ describe('MainMenuComponent', () => {
     // given
     playerService.savePlayer(Player.withName('test'));
     createComponent();
-    spyOn(component.viewChange, 'emit');
 
     // when
-    html.querySelector<HTMLButtonElement>('button#continue')?.click();
+    getButton('continue')?.click();
 
     // then
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.BATTLE);
@@ -99,10 +95,9 @@ describe('MainMenuComponent', () => {
 
   it('should not switch to the battle screen when the continue button is clicked but no saved player exists', () => {
     // given
-    spyOn(component.viewChange, 'emit');
 
     // when
-    html.querySelector<HTMLButtonElement>('button#continue')?.click();
+    getButton('continue')?.click();
 
     // then
     expect(component.viewChange.emit).not.toHaveBeenCalled();
@@ -115,7 +110,7 @@ describe('MainMenuComponent', () => {
     createComponent();
 
     // then
-    expect(html.querySelector<HTMLButtonElement>('button#continue')?.classList).toContain('is-disabled');
+    expect(getButton('continue')?.classList).toContain('is-disabled');
   });
 
   it('should enable the continue button if there is a saved player', () => {
@@ -126,7 +121,7 @@ describe('MainMenuComponent', () => {
     createComponent();
 
     // then
-    expect(html.querySelector<HTMLButtonElement>('button#continue')?.classList).not.toContain('is-disabled');
+    expect(getButton('continue')?.classList).not.toContain('is-disabled');
   });
 
   /*
@@ -138,5 +133,11 @@ describe('MainMenuComponent', () => {
     component = fixture.componentInstance;
     html = fixture.nativeElement;
     fixture.detectChanges();
+    spyOn(component.viewChange, 'emit');
   }
+
+  function getButton(id: string): HTMLButtonElement | null {
+    return html.querySelector<HTMLButtonElement>('button#' + id);
+  }
+
 });
