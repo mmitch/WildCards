@@ -48,6 +48,7 @@ describe('CreatePlayerComponent', () => {
     component = fixture.componentInstance;
     html = fixture.nativeElement;
     fixture.detectChanges();
+    spyOn(component.viewChange, 'emit');
   });
 
   it('should create', () => {
@@ -56,12 +57,10 @@ describe('CreatePlayerComponent', () => {
 
   it('should not save the character if the name is empty', () => {
     // given
-    spyOn(component.viewChange, 'emit');
+    setNameInput('');
 
     // when
-    setNameInput('');
-    html.querySelector('button')?.click();
-    fixture.detectChanges();
+    clickCreateCharacter();
 
     // then
     expect(component.viewChange.emit).not.toHaveBeenCalled();
@@ -71,12 +70,10 @@ describe('CreatePlayerComponent', () => {
 
   it('should save the character if the name is valid', () => {
     // given
-    spyOn(component.viewChange, 'emit');
+    setNameInput('Foo Bar');
 
     // when
-    setNameInput('Foo Bar');
-    html.querySelector('button')?.click();
-    fixture.detectChanges();
+    clickCreateCharacter();
 
     // then
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.BATTLE);
@@ -84,6 +81,10 @@ describe('CreatePlayerComponent', () => {
     expect(storageServiceMock.getPlayer()?.name).toBe('Foo Bar');
     expect(storageServiceMock.getPlayer()?.score).toBe(0);
   });
+
+  /*
+   * test helper methods below
+   */
 
   function getNameInput(): HTMLInputElement {
     const element = html.querySelector<HTMLInputElement>('input#name_field');
@@ -99,4 +100,8 @@ describe('CreatePlayerComponent', () => {
     getNameInput().dispatchEvent(new Event('input'));
   }
 
+  function clickCreateCharacter(): void {
+    html.querySelector('button')?.click();
+    fixture.detectChanges();
+  }
 });
