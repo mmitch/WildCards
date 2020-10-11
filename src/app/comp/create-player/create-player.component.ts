@@ -55,6 +55,9 @@ export class CreatePlayerComponent implements OnInit {
       return;
     }
     this.isInvalidName = false;
+    if (this.existingPlayer) {
+      this.playerService.onPlayerDeath(this.existingPlayer);
+    }
     this.playerService.savePlayer(Player.withName(this.playerName));
     this.viewChange.emit(View.BATTLE);
   }

@@ -20,6 +20,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Player } from 'src/app/model/player';
+import { HighscoreService } from 'src/app/service/highscore/highscore.service';
 import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
 import { LocalStorageServiceMock } from 'src/app/service/local-storage/local-storage.service.mock';
 import { PlayerService } from 'src/app/service/player/player.service';
@@ -37,6 +38,7 @@ describe('CreatePlayerComponent', () => {
   let fixture: ComponentFixture<CreatePlayerComponent>;
   let html: HTMLElement;
   let playerService: PlayerService;
+  let highscoreService: HighscoreService;
 
   beforeEach(async () => {
     const storageServiceMock = new LocalStorageServiceMock();
@@ -51,7 +53,11 @@ describe('CreatePlayerComponent', () => {
     .compileComponents();
   });
 
-  beforeEach(() => createComponent());
+  beforeEach(() => {
+    createComponent();
+    playerService = TestBed.inject(PlayerService);
+    highscoreService = TestBed.inject(HighscoreService);
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -184,7 +190,23 @@ describe('CreatePlayerComponent', () => {
     expect(text).toContain('score of ' + SAVED_PLAYER.score);
   });
 
-    /*
+  it('should add existing character to highscores when creating a new one', () => {
+    // given
+    setSavedPlayer();
+    createComponent();
+    setNameInput('New Player');
+
+    // when
+    clickCreateCharacter();
+
+    // then
+    const highscores = highscoreService.getHighscores();
+    expect(highscores.length).toBe(1);
+    expect(highscores[0].name).toBe(SAVED_PLAYER.name);
+    expect(highscores[0].score).toBe(SAVED_PLAYER.score);
+  });
+
+  /*
    * test helper methods below
    */
 
@@ -230,7 +252,6 @@ describe('CreatePlayerComponent', () => {
     html = fixture.nativeElement;
     fixture.detectChanges();
     spyOn(component.viewChange, 'emit');
-    playerService = TestBed.inject(PlayerService);
   }
 
 });
