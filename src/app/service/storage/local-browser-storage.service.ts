@@ -19,7 +19,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Highscore } from 'src/app/model/highscore';
+import { Highscore, HighscoreEntity } from 'src/app/model/highscore';
 import { Player } from 'src/app/model/player';
 import { StorageService } from './storage.service';
 
@@ -37,11 +37,16 @@ export class LocalBrowserStorageService implements StorageService {
 
   public getHighscores(): Highscore[] {
     const highscores = localStorage.getItem(Item.HIGHSCORES);
-    return highscores ? JSON.parse(highscores) : [];
+    if (!highscores) {
+      return [];
+    }
+    const serialized: HighscoreEntity[] = JSON.parse(highscores);
+    return serialized.map(s => Highscore.deserialize(s));
   }
 
   public setHighscores(highscores: Highscore[]): void {
-    localStorage.setItem(Item.HIGHSCORES, JSON.stringify(highscores));
+    const serialized = highscores.map(highscore => highscore.serialize());
+    localStorage.setItem(Item.HIGHSCORES, JSON.stringify(serialized));
   }
 
   public getPlayer(): Player | undefined {

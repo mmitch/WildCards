@@ -25,10 +25,10 @@ import { Player } from 'src/app/model/player';
 import { LocalBrowserStorageService } from './local-browser-storage.service';
 
 const HIGHSCORES: Highscore[] = [
-  { name: 'foo', date: new Date(), score: 13 },
-  { name: 'bar', date: new Date(), score:  7 },
+  new Highscore({ name: 'foo', date: new Date(), score: 13 }),
+  new Highscore({ name: 'bar', date: new Date(), score:  7 }),
 ];
-const HIGHSCORES_STRING = JSON.stringify(HIGHSCORES);
+const HIGHSCORES_STRING = JSON.stringify(HIGHSCORES.map(h => h.serialize()));
 
 const PLAYER: Player = {
   name: 'foo',
@@ -73,6 +73,9 @@ describe('LocalBrowserStorageService', () => {
 
     // then
     expect(highscores.length).toBe(2);
+    expect(highscores[0]).toEqual(HIGHSCORES[0]);
+    expect(highscores[1]).toEqual(HIGHSCORES[1]);
+    expect(highscores[0].date).toBeInstanceOf(Date);
   });
 
   it('should write highscores to local storage', () => {

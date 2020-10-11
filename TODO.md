@@ -67,3 +67,6 @@
 * proper handling of missing `Player` in `BattleComponent` constructor
 
 * how to run the same spec tests against two implementations? `StorageServiceMock` vs. `LocalBrowserStorageService`
+
+* how to use `Date` with `JSON.parse()` / `JSON.stringify`  
+  see the serialization mess in `Highscore` and   `LocalBrowserStorageService`

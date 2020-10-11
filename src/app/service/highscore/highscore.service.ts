@@ -50,6 +50,15 @@ export class HighscoreService {
   }
 
   private sortByScoreAndDate(a: Highscore, b: Highscore): number {
-    return b.score - a.score || a.date.getTime() - b.date.getTime();
+    const scoreDiff = b.score - a.score;
+    if (scoreDiff !== 0) {
+      return scoreDiff;
+    }
+    try {
+      return  a.date.getTime() - b.date.getTime();
+    } catch (error) {
+      console.error('ERROR during sort - unreadable timestamps in local storage? : ' + error);
+      return 0;
+    }
   }
 }

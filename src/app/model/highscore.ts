@@ -18,6 +18,12 @@
  * along with Wild Cards.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+export interface HighscoreEntity {
+    name: string;
+    date: number;
+    score: number;
+}
+
 export class Highscore {
     name: string;
     date: Date;
@@ -27,5 +33,21 @@ export class Highscore {
         this.name = name;
         this.date = date;
         this.score = score;
+    }
+
+    static deserialize(serialized: HighscoreEntity): Highscore {
+        return new Highscore({
+            name: serialized.name,
+            date: new Date(serialized.date),
+            score: serialized.score
+        });
+    }
+
+    public serialize(): HighscoreEntity {
+        return {
+            name: this.name,
+            date: Math.floor(this.date.getTime()),
+            score: this.score
+        };
     }
 }

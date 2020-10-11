@@ -20,6 +20,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { format } from 'date-fns';
+import { Highscore } from 'src/app/model/highscore';
 import { PipesModule } from 'src/app/pipe/pipes-module';
 import { HighscoreService } from 'src/app/service/highscore/highscore.service';
 import { StorageService } from 'src/app/service/storage/storage.service';
@@ -85,8 +86,8 @@ describe('HighscoreTableComponent', () => {
     // given
     const today = new Date();
     spyOn(highscoreServiceSpy, 'getHighscores').and.returnValue([
-      { name: 'foo', date: today, score: 1000 },
-      { name: 'bar', date: today, score:  500 },
+      new Highscore({ name: 'foo', date: today, score: 1000 }),
+      new Highscore({ name: 'bar', date: today, score:  500 }),
     ]);
 
     component.ngOnInit();
@@ -103,7 +104,7 @@ describe('HighscoreTableComponent', () => {
     // given
     const today = new Date();
     spyOn(highscoreServiceSpy, 'getHighscores').and.returnValue([
-      { name: 'foo', date: today, score: 1000 },
+      new Highscore({ name: 'foo', date: today, score: 1000 }),
     ]);
 
     component.ngOnInit();
