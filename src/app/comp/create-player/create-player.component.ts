@@ -55,4 +55,8 @@ export class CreatePlayerComponent implements OnInit {
     this.storageService.setPlayer(Player.withName(this.playerName));
     this.viewChange.emit(View.BATTLE);
   }
+
+  public onAbort(): void {
+    this.viewChange.emit(View.MAIN_MENU);
+  }
 }

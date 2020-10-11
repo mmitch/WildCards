@@ -122,6 +122,39 @@ describe('CreatePlayerComponent', () => {
     expect(getNameInput().classList).not.toContain('is-error');
   });
 
+  it('should not save the character on abort', () => {
+    // given
+    setNameInput('Foo Bar');
+
+    // when
+    clickAbort();
+
+    // then
+    expect(storageServiceMock.getPlayer()).toBeUndefined();
+  });
+
+  it('should change to main menu on abort character on abort', () => {
+    // given
+    setNameInput('Foo Bar');
+
+    // when
+    clickAbort();
+
+    // then
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.MAIN_MENU);
+  });
+
+  it('should abort even with invalid name', () => {
+    // given
+    setNameInput('');
+
+    // when
+    clickAbort();
+
+    // then
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.MAIN_MENU);
+  });
+
   /*
    * test helper methods below
    */
@@ -141,7 +174,13 @@ describe('CreatePlayerComponent', () => {
   }
 
   function clickCreateCharacter(): void {
-    html.querySelector('button')?.click();
+    html.querySelector<HTMLButtonElement>('button#create')?.click();
     fixture.detectChanges();
   }
+
+  function clickAbort(): void {
+    html.querySelector<HTMLButtonElement>('button#abort')?.click();
+    fixture.detectChanges();
+  }
+
 });

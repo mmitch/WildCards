@@ -24,5 +24,6 @@
         <label for="player_name">Player name</label>
         <input [value]="playerName" (input)="onNameChanged($event)" type="text" id="name_field" class="nes-input" [class.is-error]="isInvalidName">
     </div>
-    <button class="nes-btn" (click)="onCreatePlayer()">Create character</button>
+    <button class="nes-btn is-primary" id="create" (click)="onCreatePlayer()">Create character</button>
+    <button class="nes-btn" id="abort" (click)="onAbort()">Abort</button>
 </div>
