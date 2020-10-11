@@ -71,11 +71,11 @@ describe('MainMenuComponent', () => {
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.HIGHSCORES);
   });
 
-  it('should request switch to the create player screen when the start battle button is clicked', () => {
+  it('should request switch to the create player screen when the new game button is clicked', () => {
     // given
 
     // when
-    getButton('battle')?.click();
+    getButton('start')?.click();
 
     // then
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.CREATE_PLAYER);

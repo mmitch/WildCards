@@ -44,7 +44,7 @@ export class MainMenuComponent implements OnInit {
     this.viewChange.emit(View.TITLE);
   }
 
-  public onStartBattle(): void {
+  public onNewGame(): void {
     this.viewChange.emit(View.CREATE_PLAYER);
   }
 

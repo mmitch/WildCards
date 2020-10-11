@@ -21,6 +21,6 @@
 <h2>Main menu</h2>
 
 <button id="title" class="nes-btn" (click)="onShowTitle()">Title Screen</button>
-<button id="battle" class="nes-btn" (click)="onStartBattle()">Start Battle</button>
+<button id="start" class="nes-btn" (click)="onNewGame()">Start New Game</button>
 <button id="continue" class="nes-btn" (click)="onContinueBattle()" [class.is-disabled]="!hasSavedPlayer">Continue Battle</button>
 <button id="highscores" class="nes-btn" (click)="onShowHighScores()">Highscore List</button>
