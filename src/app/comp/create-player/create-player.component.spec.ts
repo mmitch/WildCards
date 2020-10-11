@@ -55,7 +55,18 @@ describe('CreatePlayerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should not save the character if the name is empty', () => {
+  it('should not save the character if the name is invalid', () => {
+    // given
+    setNameInput('');
+
+    // when
+    clickCreateCharacter();
+
+    // then
+    expect(storageServiceMock.getPlayer()).toBeUndefined();
+  });
+
+  it('should not change to battle screen if the name is invalid', () => {
     // given
     setNameInput('');
 
@@ -64,8 +75,17 @@ describe('CreatePlayerComponent', () => {
 
     // then
     expect(component.viewChange.emit).not.toHaveBeenCalled();
+  });
+
+  it('should show the error if the name is invalid', () => {
+    // given
+    setNameInput('');
+
+    // when
+    clickCreateCharacter();
+
+    // then
     expect(getNameInput().classList).toContain('is-error');
-    expect(storageServiceMock.getPlayer()).toBeUndefined();
   });
 
   it('should save the character if the name is valid', () => {
@@ -76,10 +96,30 @@ describe('CreatePlayerComponent', () => {
     clickCreateCharacter();
 
     // then
-    expect(component.viewChange.emit).toHaveBeenCalledWith(View.BATTLE);
-    expect(getNameInput().classList).not.toContain('is-error');
     expect(storageServiceMock.getPlayer()?.name).toBe('Foo Bar');
     expect(storageServiceMock.getPlayer()?.score).toBe(0);
+  });
+
+  it('should change to battle screen if the name is valid', () => {
+    // given
+    setNameInput('Foo Bar');
+
+    // when
+    clickCreateCharacter();
+
+    // then
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.BATTLE);
+  });
+
+  it('should show no error if the name is valid', () => {
+    // given
+    setNameInput('Foo Bar');
+
+    // when
+    clickCreateCharacter();
+
+    // then
+    expect(getNameInput().classList).not.toContain('is-error');
   });
 
   /*
