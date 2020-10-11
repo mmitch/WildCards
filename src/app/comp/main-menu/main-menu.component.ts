@@ -19,6 +19,7 @@
  */
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { PlayerService } from 'src/app/service/player/player.service';
 import { View } from 'src/app/view';
 
 @Component({
@@ -30,7 +31,11 @@ export class MainMenuComponent implements OnInit {
 
   @Output() viewChange = new EventEmitter<View>();
 
-  constructor() { }
+  hasSavedPlayer: boolean;
+
+  constructor(private playerService: PlayerService) {
+    this.hasSavedPlayer = playerService.loadPlayer() !== undefined;
+  }
 
   ngOnInit(): void {
   }
@@ -41,6 +46,12 @@ export class MainMenuComponent implements OnInit {
 
   public onStartBattle(): void {
     this.viewChange.emit(View.CREATE_PLAYER);
+  }
+
+  public onContinueBattle(): void {
+    if (this.hasSavedPlayer) {
+      this.viewChange.emit(View.BATTLE);
+    }
   }
 
   public onShowHighScores(): void {

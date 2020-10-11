@@ -1,8 +1,4 @@
 
-## milestone: continue
-
-* add restart option to main menu (only of Player is currently saved)
-
 ## milestone: minimal game
 
 * versionize Player object

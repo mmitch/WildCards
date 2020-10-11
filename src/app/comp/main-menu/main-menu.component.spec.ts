@@ -19,6 +19,10 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Player } from 'src/app/model/player';
+import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
+import { LocalStorageServiceMock } from 'src/app/service/local-storage/local-storage.service.mock';
+import { PlayerService } from 'src/app/service/player/player.service';
 import { View } from 'src/app/view';
 
 import { MainMenuComponent } from './main-menu.component';
@@ -27,19 +31,20 @@ describe('MainMenuComponent', () => {
   let component: MainMenuComponent;
   let fixture: ComponentFixture<MainMenuComponent>;
   let html: HTMLElement;
+  let playerService: PlayerService;
 
   beforeEach(async () => {
+    const storageServiceMock = new LocalStorageServiceMock();
     await TestBed.configureTestingModule({
-      declarations: [ MainMenuComponent ]
+      declarations: [ MainMenuComponent ],
+      providers: [ { provide: LocalStorageService, useValue: storageServiceMock } ],
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainMenuComponent);
-    component = fixture.componentInstance;
-    html = fixture.nativeElement;
-    fixture.detectChanges();
+    createComponent();
+    playerService = TestBed.inject(PlayerService);
   });
 
   it('should create', () => {
@@ -78,4 +83,60 @@ describe('MainMenuComponent', () => {
     // then
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.CREATE_PLAYER);
   });
+
+  it('should request switch to the battle screen when the continue button is clicked and a saved player exists', () => {
+    // given
+    playerService.savePlayer(Player.withName('test'));
+    createComponent();
+    spyOn(component.viewChange, 'emit');
+
+    // when
+    html.querySelector<HTMLButtonElement>('button#continue')?.click();
+
+    // then
+    expect(component.viewChange.emit).toHaveBeenCalledWith(View.BATTLE);
+  });
+
+  it('should not switch to the battle screen when the continue button is clicked but no saved player exists', () => {
+    // given
+    spyOn(component.viewChange, 'emit');
+
+    // when
+    html.querySelector<HTMLButtonElement>('button#continue')?.click();
+
+    // then
+    expect(component.viewChange.emit).not.toHaveBeenCalled();
+  });
+
+  it('should disable the continue button if there is no saved player', () => {
+    // given
+
+    // when
+    createComponent();
+
+    // then
+    expect(html.querySelector<HTMLButtonElement>('button#continue')?.classList).toContain('is-disabled');
+  });
+
+  it('should enable the continue button if there is a saved player', () => {
+    // given
+    playerService.savePlayer(Player.withName('test'));
+
+    // when
+    createComponent();
+
+    // then
+    expect(html.querySelector<HTMLButtonElement>('button#continue')?.classList).not.toContain('is-disabled');
+  });
+
+  /*
+   * test helper methods below
+   */
+
+  function createComponent(): void {
+    fixture = TestBed.createComponent(MainMenuComponent);
+    component = fixture.componentInstance;
+    html = fixture.nativeElement;
+    fixture.detectChanges();
+  }
 });
