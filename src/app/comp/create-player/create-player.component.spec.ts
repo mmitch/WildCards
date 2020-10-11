@@ -35,7 +35,6 @@ describe('CreatePlayerComponent', () => {
     storageServiceMock = new LocalStorageServiceMock();
     await TestBed.configureTestingModule({
       declarations: [ CreatePlayerComponent ],
-      providers: [ { provide: LocalStorageService, useValue: storageServiceMock } ],
     })
     .overrideComponent( CreatePlayerComponent, {
         set: {
