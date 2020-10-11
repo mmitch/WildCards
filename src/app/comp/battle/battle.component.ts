@@ -20,8 +20,7 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Player } from 'src/app/model/player';
-import { HighscoreService } from 'src/app/service/highscore/highscore.service';
-import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
+import { PlayerService } from 'src/app/service/player/player.service';
 import { View } from 'src/app/view';
 
 @Component({
@@ -37,13 +36,10 @@ export class BattleComponent implements OnInit {
 
   player: Player;
 
-  constructor(
-    private highscoreService: HighscoreService,
-    private storageService: LocalStorageService)
-    {
-      const savedPlayer = this.storageService.getPlayer();
-      this.player = savedPlayer ? savedPlayer : Player.withName('Jane Doe');
-    }
+  constructor(private playerService: PlayerService) {
+    const savedPlayer = this.playerService.loadPlayer();
+    this.player = savedPlayer ? savedPlayer : Player.withName('Jane Doe');
+  }
 
   ngOnInit(): void {
   }
@@ -55,13 +51,12 @@ export class BattleComponent implements OnInit {
     }
     else {
       this.battleEnded = true;
-      this.highscoreService.addHighscore(this.player);
-      this.storageService.deletePlayer();
+      this.playerService.onPlayerDeath(this.player);
     }
   }
 
   public onSave(): void {
-    this.storageService.setPlayer(this.player);
+    this.playerService.savePlayer(this.player);
     this.onReturnToMainMenu();
   }
 

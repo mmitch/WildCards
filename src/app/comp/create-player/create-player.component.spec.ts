@@ -19,8 +19,10 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Player } from 'src/app/model/player';
 import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
 import { LocalStorageServiceMock } from 'src/app/service/local-storage/local-storage.service.mock';
+import { PlayerService } from 'src/app/service/player/player.service';
 import { View } from 'src/app/view';
 
 import { CreatePlayerComponent } from './create-player.component';
@@ -29,12 +31,13 @@ describe('CreatePlayerComponent', () => {
   let component: CreatePlayerComponent;
   let fixture: ComponentFixture<CreatePlayerComponent>;
   let html: HTMLElement;
-  let storageServiceMock: LocalStorageServiceMock;
+  let playerService: PlayerService;
 
   beforeEach(async () => {
-    storageServiceMock = new LocalStorageServiceMock();
+    const storageServiceMock = new LocalStorageServiceMock();
     await TestBed.configureTestingModule({
       declarations: [ CreatePlayerComponent ],
+      providers: [ { provide: LocalStorageService, useValue: storageServiceMock } ],
     })
     .overrideComponent( CreatePlayerComponent, {
         set: {
@@ -49,6 +52,7 @@ describe('CreatePlayerComponent', () => {
     html = fixture.nativeElement;
     fixture.detectChanges();
     spyOn(component.viewChange, 'emit');
+    playerService = TestBed.inject(PlayerService);
   });
 
   it('should create', () => {
@@ -63,7 +67,7 @@ describe('CreatePlayerComponent', () => {
     clickCreateCharacter();
 
     // then
-    expect(storageServiceMock.getPlayer()).toBeUndefined();
+    expect(getSavedPlayer()).toBeUndefined();
   });
 
   it('should not change to battle screen if the name is invalid', () => {
@@ -96,8 +100,9 @@ describe('CreatePlayerComponent', () => {
     clickCreateCharacter();
 
     // then
-    expect(storageServiceMock.getPlayer()?.name).toBe('Foo Bar');
-    expect(storageServiceMock.getPlayer()?.score).toBe(0);
+    const savedPlayer = getSavedPlayer();
+    expect(savedPlayer?.name).toBe('Foo Bar');
+    expect(savedPlayer?.score).toBe(0);
   });
 
   it('should change to battle screen if the name is valid', () => {
@@ -130,7 +135,7 @@ describe('CreatePlayerComponent', () => {
     clickAbort();
 
     // then
-    expect(storageServiceMock.getPlayer()).toBeUndefined();
+    expect(getSavedPlayer()).toBeUndefined();
   });
 
   it('should change to main menu on abort character on abort', () => {
@@ -181,6 +186,10 @@ describe('CreatePlayerComponent', () => {
   function clickAbort(): void {
     html.querySelector<HTMLButtonElement>('button#abort')?.click();
     fixture.detectChanges();
+  }
+
+  function getSavedPlayer(): Player | undefined {
+    return playerService.loadPlayer();
   }
 
 });

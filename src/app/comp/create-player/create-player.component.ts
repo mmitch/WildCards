@@ -20,7 +20,7 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Player } from 'src/app/model/player';
-import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
+import { PlayerService } from 'src/app/service/player/player.service';
 import { View } from 'src/app/view';
 
 @Component({
@@ -35,7 +35,7 @@ export class CreatePlayerComponent implements OnInit {
   playerName = '';
   isInvalidName = false;
 
-  constructor(private storageService: LocalStorageService) { }
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit(): void {
   }
@@ -52,7 +52,7 @@ export class CreatePlayerComponent implements OnInit {
       return;
     }
     this.isInvalidName = false;
-    this.storageService.setPlayer(Player.withName(this.playerName));
+    this.playerService.savePlayer(Player.withName(this.playerName));
     this.viewChange.emit(View.BATTLE);
   }
 
