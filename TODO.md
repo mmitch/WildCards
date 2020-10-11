@@ -31,6 +31,11 @@
 * add tests to battle component
 * list used assets (CSS, Font) in README besides Angular
 
+## planned e2e tests
+
+* script happy path
+* script restart with existing character
+
 ## more stuff/backlog (create milestones for this)
 
 * add boss monsters
