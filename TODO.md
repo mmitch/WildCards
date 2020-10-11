@@ -2,7 +2,6 @@
 ## milestone: continue
 
 * add restart option to main menu (only of Player is currently saved)
-* warn when creating a new Player while a saved game exists
 
 ## milestone: minimal game
 

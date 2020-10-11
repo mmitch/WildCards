@@ -27,6 +27,11 @@ import { View } from 'src/app/view';
 
 import { CreatePlayerComponent } from './create-player.component';
 
+const SAVED_PLAYER: Player = {
+  name: 'Foo',
+  score: 7,
+};
+
 describe('CreatePlayerComponent', () => {
   let component: CreatePlayerComponent;
   let fixture: ComponentFixture<CreatePlayerComponent>;
@@ -46,14 +51,7 @@ describe('CreatePlayerComponent', () => {
     .compileComponents();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CreatePlayerComponent);
-    component = fixture.componentInstance;
-    html = fixture.nativeElement;
-    fixture.detectChanges();
-    spyOn(component.viewChange, 'emit');
-    playerService = TestBed.inject(PlayerService);
-  });
+  beforeEach(() => createComponent());
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -160,7 +158,33 @@ describe('CreatePlayerComponent', () => {
     expect(component.viewChange.emit).toHaveBeenCalledWith(View.MAIN_MENU);
   });
 
-  /*
+  it('should show no warning if no player already exists', () => {
+    // given
+
+    // when
+    createComponent();
+
+    // then
+    expect(getWarning()).toBeNull();
+  });
+
+  it('should show a warning if a player already exists', () => {
+    // given
+    setSavedPlayer();
+
+    // when
+    createComponent();
+
+    // then
+    const warning = getWarning();
+    expect(warning).not.toBeNull();
+    const text = warning?.textContent;
+    expect(text).toContain('will overwrite');
+    expect(text).toContain('existing character ' + SAVED_PLAYER.name);
+    expect(text).toContain('score of ' + SAVED_PLAYER.score);
+  });
+
+    /*
    * test helper methods below
    */
 
@@ -171,6 +195,10 @@ describe('CreatePlayerComponent', () => {
     }
     fail('name input element not found');
     return new HTMLInputElement(); // to keep method signature happy; fail() is not recognized
+  }
+
+  function setSavedPlayer(): void {
+    playerService.savePlayer(SAVED_PLAYER);
   }
 
   function setNameInput(name: string): void {
@@ -190,6 +218,19 @@ describe('CreatePlayerComponent', () => {
 
   function getSavedPlayer(): Player | undefined {
     return playerService.loadPlayer();
+  }
+
+  function getWarning(): HTMLDivElement | null {
+    return html.querySelector<HTMLDivElement>('div#playerExists');
+  }
+
+  function createComponent(): void {
+    fixture = TestBed.createComponent(CreatePlayerComponent);
+    component = fixture.componentInstance;
+    html = fixture.nativeElement;
+    fixture.detectChanges();
+    spyOn(component.viewChange, 'emit');
+    playerService = TestBed.inject(PlayerService);
   }
 
 });

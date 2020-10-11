@@ -32,10 +32,13 @@ export class CreatePlayerComponent implements OnInit {
 
   @Output() viewChange = new EventEmitter<View>();
 
+  existingPlayer?: Player;
   playerName = '';
   isInvalidName = false;
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService) {
+    this.existingPlayer = playerService.loadPlayer();
+  }
 
   ngOnInit(): void {
   }

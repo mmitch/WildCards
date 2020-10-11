@@ -20,6 +20,10 @@
 
 <div class="nes-container with-title is-centered">
     <p class="title">Create new character</p>
+    <div *ngIf="existingPlayer" id="playerExists" class="nes-container is-rounded -is-center with-title">
+        <p class="title nes-text is-warning">Warning</p>
+        <p>This will overwrite the existing character {{ existingPlayer.name }} with a score of {{ existingPlayer.score }}.</p>
+    </div>
     <div class="nes-field">
         <label for="player_name">Player name</label>
         <input [value]="playerName" (input)="onNameChanged($event)" type="text" id="name_field" class="nes-input" [class.is-error]="isInvalidName">
