@@ -19,11 +19,15 @@
  */
 
 import { TestBed } from '@angular/core/testing';
+import { sub } from 'date-fns';
+import { Highscore } from 'src/app/model/highscore';
 import { Player } from 'src/app/model/player';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { LocalStorageServiceMock } from '../local-storage/local-storage.service.mock';
 
 import { HighscoreService } from './highscore.service';
+
+const TODAY = new Date();
 
 describe('HighscoreService', () => {
   let service: HighscoreService;
@@ -49,10 +53,12 @@ describe('HighscoreService', () => {
     expect(service.getHighscores().length).toBe(0);
   });
 
-  it('should return highscores after highscores have been added', () => {
+  it('should return existing highscores', () => {
     // given
-    addHighscore('foo', 5);
-    addHighscore('bar', 3);
+    setExistingHighscores([
+      existingHighscore('foo', 5, 0),
+      existingHighscore('bar', 3, 0),
+    ]);
 
     // when
     const highscores = service.getHighscores();
@@ -61,17 +67,21 @@ describe('HighscoreService', () => {
     expect(highscores.length).toBe(2);
   });
 
-  it('should sort highscores by score', () => {
+  it('should sort highscores by score and date', async () => {
     // given
-    addHighscore('foo', 5);
-    addHighscore('bar', 3);
-    addHighscore('baz', 10);
+    setExistingHighscores([
+      existingHighscore('middle bar', 3, 3),
+      existingHighscore('late bar',   3, 2),
+      existingHighscore('early bar',  3, 5),
+      existingHighscore('baz', 10, 0),
+    ]);
 
     // when
-    const highscores = service.getHighscores();
+    addHighscore('foo', 5);
 
     // then
-    expect(highscores.length).toBe(3);
+    const highscores = service.getHighscores();
+    expect(highscores.length).toBe(5);
 
     expect(highscores[0].name).toBe('baz');
     expect(highscores[0].score).toBe(10);
@@ -79,32 +89,60 @@ describe('HighscoreService', () => {
     expect(highscores[1].name).toBe('foo');
     expect(highscores[1].score).toBe(5);
 
-    expect(highscores[2].name).toBe('bar');
+    expect(highscores[2].name).toBe('early bar');
     expect(highscores[2].score).toBe(3);
+
+    expect(highscores[3].name).toBe('middle bar');
+    expect(highscores[3].score).toBe(3);
+
+    expect(highscores[4].name).toBe('late bar');
+    expect(highscores[4].score).toBe(3);
   });
 
   it('should only keep the top 10 highscores', () => {
     // given
-    for (let i = 0; i < 5; i++) {
-      addHighscore('foo', 5);
-      addHighscore('bar', 3);
-      addHighscore('baz', 10);
-    }
+    setExistingHighscores([
+      existingHighscore('A', 10, 0),
+      existingHighscore('B', 9, 0),
+      existingHighscore('C', 8, 0),
+      existingHighscore('D', 7, 0),
+      existingHighscore('E', 6, 0),
+      existingHighscore('F', 5, 0),
+      existingHighscore('G', 4, 0),
+      existingHighscore('H', 3, 0),
+      existingHighscore('I', 2, 0),
+      existingHighscore('J', 1, 0),
+    ]);
 
     // when
-    const highscores = service.getHighscores();
+    addHighscore('new', 6);
 
     // then
+    const highscores = service.getHighscores();
     expect(highscores.length).toBe(10);
 
-    expect(highscores[0].name).toBe('baz');
+    expect(highscores[0].name).toBe('A');
     expect(highscores[0].score).toBe(10);
 
-    expect(highscores[9].name).toBe('foo');
-    expect(highscores[9].score).toBe(5);
+    expect(highscores[9].name).toBe('I');
+    expect(highscores[9].score).toBe(2);
   });
+
+  /*
+   * test helper methods below
+  */
+
+  function existingHighscore(name: string, score: number, ageInDays: number): Highscore {
+    const date = sub(TODAY, { days: ageInDays });
+    return new Highscore({name, date, score});
+  }
+
+  function setExistingHighscores(highscores: Highscore[]): void {
+    storageMock.setHighscores(highscores);
+  }
 
   function addHighscore(name: string, score: number): void {
     service.addHighscore(new Player({ name, score }));
   }
+
 });

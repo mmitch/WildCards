@@ -42,10 +42,14 @@ export class HighscoreService {
     const highscores = this.getHighscores();
     highscores.push(newScore);
 
-    highscores.sort((a, b) => (b.score - a.score));
+    highscores.sort(this.sortByScoreAndDate);
 
     const pruned = highscores.slice(0, MAX_ENTRIES);
 
     this.localStorageService.setHighscores(pruned);
+  }
+
+  private sortByScoreAndDate(a: Highscore, b: Highscore): number {
+    return b.score - a.score || a.date.getTime() - b.date.getTime();
   }
 }
