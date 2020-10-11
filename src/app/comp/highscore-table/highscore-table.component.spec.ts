@@ -22,6 +22,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { format } from 'date-fns';
 import { PipesModule } from 'src/app/pipe/pipes-module';
 import { HighscoreService } from 'src/app/service/highscore/highscore.service';
+import { StorageService } from 'src/app/service/storage/storage.service';
+import { StorageServiceMock } from 'src/app/service/storage/storage.service.mock';
 import { View } from 'src/app/view';
 
 import { HighscoreTableComponent } from './highscore-table.component';
@@ -38,6 +40,7 @@ describe('HighscoreTableComponent', () => {
       providers: [ HighscoreService ],
       imports: [ PipesModule ],
     })
+    .overrideProvider( StorageService, { useFactory: () => new StorageServiceMock() })
     .compileComponents();
   });
 

@@ -22,7 +22,7 @@ import { TestBed } from '@angular/core/testing';
 import { Highscore } from 'src/app/model/highscore';
 import { Player } from 'src/app/model/player';
 
-import { LocalStorageService } from './local-storage.service';
+import { LocalBrowserStorageService } from './local-browser-storage.service';
 
 const HIGHSCORES: Highscore[] = [
   { name: 'foo', date: new Date(), score: 13 },
@@ -36,12 +36,12 @@ const PLAYER: Player = {
 };
 const PLAYER_STRING = JSON.stringify(PLAYER);
 
-describe('LocalStorageService', () => {
-  let service: LocalStorageService;
+describe('LocalBrowserStorageService', () => {
+  let service: LocalBrowserStorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LocalStorageService);
+    service = TestBed.inject(LocalBrowserStorageService);
 
     localStorage.clear();
   });

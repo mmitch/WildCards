@@ -22,8 +22,8 @@ import { TestBed } from '@angular/core/testing';
 import { sub } from 'date-fns';
 import { Highscore } from 'src/app/model/highscore';
 import { Player } from 'src/app/model/player';
-import { LocalStorageService } from '../local-storage/local-storage.service';
-import { LocalStorageServiceMock } from '../local-storage/local-storage.service.mock';
+import { StorageService } from '../storage/storage.service';
+import { StorageServiceMock } from '../storage/storage.service.mock';
 
 import { HighscoreService } from './highscore.service';
 
@@ -31,17 +31,13 @@ const TODAY = new Date();
 
 describe('HighscoreService', () => {
   let service: HighscoreService;
-  let storageMock: LocalStorageServiceMock;
+  let storageMock: StorageServiceMock;
 
   beforeEach(() => {
-    storageMock = new LocalStorageServiceMock();
+    storageMock = new StorageServiceMock();
     TestBed.configureTestingModule({
-      providers: [
-        LocalStorageServiceMock,
-          { provide: LocalStorageService, useValue: storageMock }
-      ]
-    })
-    .compileComponents();
+      providers: [ { provide: StorageService, useValue: storageMock } ]
+    });
     service = TestBed.inject(HighscoreService);
   });
 

@@ -19,6 +19,8 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { StorageService } from 'src/app/service/storage/storage.service';
+import { StorageServiceMock } from 'src/app/service/storage/storage.service.mock';
 
 import { BattleComponent } from './battle.component';
 
@@ -30,6 +32,7 @@ describe('BattleComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ BattleComponent ]
     })
+    .overrideProvider( StorageService, { useFactory: () => new StorageServiceMock() })
     .compileComponents();
   });
 

@@ -21,41 +21,16 @@
 import { Injectable } from '@angular/core';
 import { Highscore } from 'src/app/model/highscore';
 import { Player } from 'src/app/model/player';
-import { LocalStorageService } from './local-storage.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LocalStorageServiceMock implements LocalStorageService {
+export abstract class StorageService {
 
-  private highscores: Highscore[];
-  private player?: Player;
+  abstract getHighscores(): Highscore[];
 
-  constructor() {
-    this.highscores = [];
-  }
+  abstract setHighscores(highscores: Highscore[]): void;
 
-  public getHighscores(): Highscore[] {
-    return [...this.highscores];
-  }
+  abstract getPlayer(): Player | undefined;
 
-  public setHighscores(highscores: Highscore[]): void {
-    this.highscores = [...highscores];
-  }
+  abstract setPlayer(player: Player): void;
 
-  public getPlayer(): Player | undefined {
-    return this.player;
-  }
-
-  public setPlayer(player: Player): void {
-    this.player = this.copy(player);
-  }
-
-  public deletePlayer(): void {
-    this.player = undefined;
-  }
-
-  private copy<T>(obj: T): T {
-    return JSON.parse(JSON.stringify(obj));
-  }
+  abstract deletePlayer(): void;
 }

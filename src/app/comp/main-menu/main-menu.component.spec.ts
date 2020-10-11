@@ -20,8 +20,8 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Player } from 'src/app/model/player';
-import { LocalStorageService } from 'src/app/service/local-storage/local-storage.service';
-import { LocalStorageServiceMock } from 'src/app/service/local-storage/local-storage.service.mock';
+import { StorageService } from 'src/app/service/storage/storage.service';
+import { StorageServiceMock } from 'src/app/service/storage/storage.service.mock';
 import { PlayerService } from 'src/app/service/player/player.service';
 import { View } from 'src/app/view';
 
@@ -34,10 +34,10 @@ describe('MainMenuComponent', () => {
   let playerService: PlayerService;
 
   beforeEach(async () => {
-    const storageServiceMock = new LocalStorageServiceMock();
+    const storageServiceMock = new StorageServiceMock();
     await TestBed.configureTestingModule({
       declarations: [ MainMenuComponent ],
-      providers: [ { provide: LocalStorageService, useValue: storageServiceMock } ],
+      providers: [ { provide: StorageService, useValue: storageServiceMock } ],
     })
     .compileComponents();
   });

@@ -28,6 +28,8 @@ import { HighscoreTableComponent } from './comp/highscore-table/highscore-table.
 import { LeadingZeroesPipe } from './pipe/leading-zeroes/leading-zeroes.pipe';
 import { BattleComponent } from './comp/battle/battle.component';
 import { CreatePlayerComponent } from './comp/create-player/create-player.component';
+import { LocalBrowserStorageService } from './service/storage/local-browser-storage.service';
+import { StorageService } from './service/storage/storage.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import { CreatePlayerComponent } from './comp/create-player/create-player.compon
   imports: [
     BrowserModule,
   ],
-  providers: [],
+  providers: [ { provide: StorageService, useClass: LocalBrowserStorageService } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

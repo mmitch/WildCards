@@ -19,30 +19,41 @@
  */
 
 import { Injectable } from '@angular/core';
+import { Highscore } from 'src/app/model/highscore';
 import { Player } from 'src/app/model/player';
-import { HighscoreService } from '../highscore/highscore.service';
-import { StorageService } from '../storage/storage.service';
+import { StorageService } from './storage.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class PlayerService {
+@Injectable()
+export class StorageServiceMock implements StorageService {
 
-  constructor(
-    private storageService: StorageService,
-    private highscoreService: HighscoreService,
-    ) { }
+  private highscores: Highscore[];
+  private player?: Player;
 
-  public savePlayer(player: Player): void {
-    this.storageService.setPlayer(player);
+  constructor() {
+    this.highscores = [];
   }
 
-  public loadPlayer(): Player | undefined {
-    return this.storageService.getPlayer();
+  public getHighscores(): Highscore[] {
+    return [...this.highscores];
   }
 
-  public onPlayerDeath(player: Player): void {
-    this.storageService.deletePlayer();
-    this.highscoreService.addHighscore(player);
+  public setHighscores(highscores: Highscore[]): void {
+    this.highscores = [...highscores];
+  }
+
+  public getPlayer(): Player | undefined {
+    return this.player;
+  }
+
+  public setPlayer(player: Player): void {
+    this.player = this.copy(player);
+  }
+
+  public deletePlayer(): void {
+    this.player = undefined;
+  }
+
+  private copy<T>(obj: T): T {
+    return JSON.parse(JSON.stringify(obj));
   }
 }

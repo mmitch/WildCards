@@ -21,13 +21,13 @@
 import { TestBed } from '@angular/core/testing';
 import { Player } from 'src/app/model/player';
 import { HighscoreService } from '../highscore/highscore.service';
-import { LocalStorageService } from '../local-storage/local-storage.service';
-import { LocalStorageServiceMock } from '../local-storage/local-storage.service.mock';
+import { StorageService } from '../storage/storage.service';
+import { StorageServiceMock } from '../storage/storage.service.mock';
 
 import { PlayerService } from './player.service';
 
 describe('PlayerService', () => {
-  let storageServiceMock: LocalStorageServiceMock;
+  let storageServiceMock: StorageServiceMock;
   let highscoreService: HighscoreService;
   let service: PlayerService;
 
@@ -42,9 +42,9 @@ describe('PlayerService', () => {
   };
 
   beforeEach(() => {
-    storageServiceMock = new LocalStorageServiceMock();
+    storageServiceMock = new StorageServiceMock();
     TestBed.configureTestingModule({
-      providers: [ { provide: LocalStorageService, useValue: storageServiceMock } ],
+      providers: [ { provide: StorageService, useValue: storageServiceMock } ],
     });
     highscoreService = TestBed.inject(HighscoreService);
     service = TestBed.inject(PlayerService);

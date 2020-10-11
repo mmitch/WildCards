@@ -21,7 +21,7 @@
 import { Injectable } from '@angular/core';
 import { Highscore } from 'src/app/model/highscore';
 import { Player } from 'src/app/model/player';
-import { LocalStorageService } from '../local-storage/local-storage.service';
+import { StorageService } from '../storage/storage.service';
 
 const MAX_ENTRIES = 10;
 
@@ -30,10 +30,10 @@ const MAX_ENTRIES = 10;
 })
 export class HighscoreService {
 
-  constructor(private localStorageService: LocalStorageService) { }
+  constructor(private storageService: StorageService) { }
 
   public getHighscores(): Highscore[] {
-    return this.localStorageService.getHighscores();
+    return this.storageService.getHighscores();
   }
 
   public addHighscore(player: Player): void {
@@ -46,7 +46,7 @@ export class HighscoreService {
 
     const pruned = highscores.slice(0, MAX_ENTRIES);
 
-    this.localStorageService.setHighscores(pruned);
+    this.storageService.setHighscores(pruned);
   }
 
   private sortByScoreAndDate(a: Highscore, b: Highscore): number {

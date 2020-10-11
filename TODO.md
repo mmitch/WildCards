@@ -65,3 +65,5 @@
 * find the proper way for constructor overloading or any sort of different constructors in `Player`
 
 * proper handling of missing `Player` in `BattleComponent` constructor
+
+* how to run the same spec tests against two implementations? `StorageServiceMock` vs. `LocalBrowserStorageService`

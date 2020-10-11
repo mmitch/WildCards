@@ -21,6 +21,7 @@
 import { Injectable } from '@angular/core';
 import { Highscore } from 'src/app/model/highscore';
 import { Player } from 'src/app/model/player';
+import { StorageService } from './storage.service';
 
 const enum Item {
   HIGHSCORES = 'HIGHSCORES',
@@ -30,7 +31,7 @@ const enum Item {
 @Injectable({
   providedIn: 'root'
 })
-export class LocalStorageService {
+export class LocalBrowserStorageService implements StorageService {
 
   constructor() { }
 
