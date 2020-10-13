@@ -28,6 +28,7 @@
 
 ## concrete todos
 
+* add manual/battle instructions
 * add tests to battle component
 * list used assets (CSS, Font) in README besides Angular
 
@@ -57,6 +58,11 @@
 * support touch-only usage
 * support keyboard-only usage (individual keys)
 * support arrow-keys+enter usage
+
+## learning opportunities
+
+* use Routing instead of switching components by `Views` enum  
+  deep links might not be useful, but see how the code changes, perhaps it is useful
 
 ## mysteries
 
