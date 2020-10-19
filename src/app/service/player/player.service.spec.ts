@@ -42,6 +42,11 @@ describe('PlayerService', () => {
     score: 30,
     version: VERSION,
   };
+
+  const PLAYER_OLD_VERSION: Player = {
+    name: 'Baz',
+    score: 30,
+    version: VERSION - 1,
   };
 
   beforeEach(() => {
@@ -84,7 +89,16 @@ describe('PlayerService', () => {
     // when
     const player = service.loadPlayer();
 
+    // then
+    expect(player).toBeUndefined();
+  });
+
+  it('should return undefined if player was saved with a different version', () => {
     // given
+    storageServiceMock.setPlayer(PLAYER_OLD_VERSION);
+
+    // when
+    const player = service.loadPlayer();
 
     // then
     expect(player).toBeUndefined();

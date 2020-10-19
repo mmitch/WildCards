@@ -2,7 +2,6 @@
 
 ## milestone: minimal game
 
-* disallow reload of older Player (show message?)
 * add player health
 * implement real battle against a stock enemy using constants
 * extract constants to objects (Player, Enemy, Deck)
@@ -49,6 +48,7 @@
 * add special cards to monsters
 * add CSS/style individual views
 * support landscape/portrait screens
+* show warning on mismatched Player version in the UI
 
 ## global stuff
 

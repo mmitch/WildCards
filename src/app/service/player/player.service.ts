@@ -19,7 +19,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Player } from 'src/app/model/player';
+import { Player, VERSION } from 'src/app/model/player';
 import { HighscoreService } from '../highscore/highscore.service';
 import { StorageService } from '../storage/storage.service';
 
@@ -38,7 +38,14 @@ export class PlayerService {
   }
 
   public loadPlayer(): Player | undefined {
-    return this.storageService.getPlayer();
+    const player = this.storageService.getPlayer();
+    if (player) {
+      if (player.version === VERSION) {
+        return player;
+      }
+      console.warn(`did not load saved player: version mismatch of saved object (got ${player.version}, expected ${VERSION})`);
+    }
+    return undefined;
   }
 
   public onPlayerDeath(player: Player): void {
