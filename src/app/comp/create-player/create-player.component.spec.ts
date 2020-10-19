@@ -186,8 +186,8 @@ describe('CreatePlayerComponent', () => {
     expect(warning).not.toBeNull();
     const text = warning?.textContent;
     expect(text).toContain('will overwrite');
-    expect(text).toContain('existing character ' + SAVED_PLAYER.name);
-    expect(text).toContain('score of ' + SAVED_PLAYER.score);
+    expect(text).toContain(`existing character ${SAVED_PLAYER.name}`);
+    expect(text).toContain(`score of ${SAVED_PLAYER.score}`);
   });
 
   it('should add existing character to highscores when creating a new one', () => {

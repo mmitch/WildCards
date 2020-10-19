@@ -115,7 +115,7 @@ describe('HighscoreTableComponent', () => {
 
     // then
     expect(list.length).toBe(1);
-    expect(list[0].textContent).toBe('00001000 ' + format(today, 'yyyy-MM-dd') + ' foo');
+    expect(list[0].textContent).toBe(`00001000 ${format(today, 'yyyy-MM-dd')} foo`);
   });
 
   function getHighscoreList(): NodeListOf<HTMLLIElement> {

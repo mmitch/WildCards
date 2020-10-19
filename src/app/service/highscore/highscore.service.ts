@@ -57,7 +57,7 @@ export class HighscoreService {
     try {
       return  a.date.getTime() - b.date.getTime();
     } catch (error) {
-      console.error('ERROR during sort - unreadable timestamps in local storage? : ' + error);
+      console.error(`ERROR during sort - unreadable timestamps in local storage? : ${error}`);
       return 0;
     }
   }

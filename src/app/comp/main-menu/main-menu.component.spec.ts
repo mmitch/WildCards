@@ -137,7 +137,7 @@ describe('MainMenuComponent', () => {
   }
 
   function getButton(id: string): HTMLButtonElement | null {
-    return html.querySelector<HTMLButtonElement>('button#' + id);
+    return html.querySelector<HTMLButtonElement>(`button#${id}`);
   }
 
 });
