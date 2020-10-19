@@ -19,7 +19,7 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Player } from 'src/app/model/player';
+import { Player, VERSION } from 'src/app/model/player';
 import { HighscoreService } from 'src/app/service/highscore/highscore.service';
 import { StorageService } from 'src/app/service/storage/storage.service';
 import { StorageServiceMock } from 'src/app/service/storage/storage.service.mock';
@@ -31,6 +31,7 @@ import { CreatePlayerComponent } from './create-player.component';
 const SAVED_PLAYER: Player = {
   name: 'Foo',
   score: 7,
+  version: VERSION,
 };
 
 describe('CreatePlayerComponent', () => {

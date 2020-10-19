@@ -138,7 +138,7 @@ describe('HighscoreService', () => {
   }
 
   function addHighscore(name: string, score: number): void {
-    service.addHighscore(new Player({ name, score }));
+    service.addHighscore(Player.withNameAndScore(name, score));
   }
 
 });

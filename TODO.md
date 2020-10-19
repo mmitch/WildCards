@@ -2,7 +2,6 @@
 
 ## milestone: minimal game
 
-* versionize Player object
 * disallow reload of older Player (show message?)
 * add player health
 * implement real battle against a stock enemy using constants

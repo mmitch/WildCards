@@ -18,17 +18,25 @@
  * along with Wild Cards.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+export const VERSION = 1;
+
 export class Player {
     name: string;
     score: number;
+    version: number;
 
     public static withName(name: string): Player {
-        return new Player({name, score: 0});
+        return new Player({name, score: 0, version: VERSION});
     }
 
+    public static withNameAndScore(name: string, score: number): Player {
+        return new Player({name, score, version: VERSION});
+    }
 
-    constructor({ name, score }: { name: string; score: number; }) {
+    constructor({ name, score, version }: { name: string; score: number; version: number }) {
         this.name = name;
         this.score = score;
+        this.version = version;
     }
+
 }

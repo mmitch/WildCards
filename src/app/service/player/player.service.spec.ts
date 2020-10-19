@@ -19,7 +19,7 @@
  */
 
 import { TestBed } from '@angular/core/testing';
-import { Player } from 'src/app/model/player';
+import { Player, VERSION } from 'src/app/model/player';
 import { HighscoreService } from '../highscore/highscore.service';
 import { StorageService } from '../storage/storage.service';
 import { StorageServiceMock } from '../storage/storage.service.mock';
@@ -34,11 +34,14 @@ describe('PlayerService', () => {
   const PLAYER: Player = {
     name: 'Baz',
     score: 12,
+    version: VERSION,
   };
 
   const PLAYER_UP_TO_DATE: Player = {
     name: 'Baz',
     score: 30,
+    version: VERSION,
+  };
   };
 
   beforeEach(() => {

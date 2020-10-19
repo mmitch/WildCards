@@ -20,7 +20,7 @@
 
 import { TestBed } from '@angular/core/testing';
 import { Highscore } from 'src/app/model/highscore';
-import { Player } from 'src/app/model/player';
+import { Player, VERSION } from 'src/app/model/player';
 
 import { LocalBrowserStorageService } from './local-browser-storage.service';
 
@@ -33,6 +33,7 @@ const HIGHSCORES_STRING = JSON.stringify(HIGHSCORES.map(h => h.serialize()));
 const PLAYER: Player = {
   name: 'foo',
   score: 1337,
+  version: VERSION,
 };
 const PLAYER_STRING = JSON.stringify(PLAYER);
 
