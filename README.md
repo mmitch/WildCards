@@ -1,8 +1,8 @@
+# Wild Cards
+
 [![Code coverage status](https://codecov.io/github/mmitch/WildCards/coverage.svg?branch=master)](https://codecov.io/github/mmitch/WildCards?branch=master)
 [![CI CD status](https://github.com/mmitch/WildCards/workflows/CI%20CD/badge.svg?branch=master)](https://github.com/mmitch/actions)
 [![CodeQL status](https://github.com/mmitch/WildCards/workflows/CodeQL/badge.svg?branch=master)](https://github.com/mmitch/actions)
-
-# Wild Cards
 
 Project homepage: https://github.com/mmitch/WildCards
 Demo version: https://mmitch.github.io/WildCards/
