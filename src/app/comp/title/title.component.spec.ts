@@ -109,8 +109,7 @@ describe('TitleComponent', () => {
     const project = html.querySelector<HTMLParagraphElement>('p#build');
 
     // then
-    expect(project?.textContent).toContain('built');
-    expect(project?.textContent).toContain('from development@unknown');
+    expect(project?.textContent).toBe('built at local from development/unknown');
   });
 
   it('should honor its Void Tyrant heritage', () => {
