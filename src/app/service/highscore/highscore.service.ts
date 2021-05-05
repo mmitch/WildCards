@@ -26,18 +26,21 @@ import { StorageService } from '../storage/storage.service';
 const MAX_ENTRIES = 10;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HighscoreService {
-
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService) {}
 
   public getHighscores(): Highscore[] {
     return this.storageService.getHighscores();
   }
 
   public addHighscore(player: Player): void {
-    const newScore = new Highscore({ name: player.name, date: new Date(), score: player.score });
+    const newScore = new Highscore({
+      name: player.name,
+      date: new Date(),
+      score: player.score,
+    });
 
     const highscores = this.getHighscores();
     highscores.push(newScore);
@@ -55,9 +58,11 @@ export class HighscoreService {
       return scoreDiff;
     }
     try {
-      return  a.date.getTime() - b.date.getTime();
+      return a.date.getTime() - b.date.getTime();
     } catch (error) {
-      console.error(`ERROR during sort - unreadable timestamps in local storage? : ${error}`);
+      console.error(
+        `ERROR during sort - unreadable timestamps in local storage? : ${error}`
+      );
       return 0;
     }
   }

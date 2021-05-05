@@ -24,14 +24,13 @@ import { HighscoreService } from '../highscore/highscore.service';
 import { StorageService } from '../storage/storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlayerService {
-
   constructor(
     private storageService: StorageService,
-    private highscoreService: HighscoreService,
-    ) { }
+    private highscoreService: HighscoreService
+  ) {}
 
   public savePlayer(player: Player): void {
     this.storageService.setPlayer(player);
@@ -43,7 +42,9 @@ export class PlayerService {
       if (player.version === VERSION) {
         return player;
       }
-      console.warn(`did not load saved player: version mismatch of saved object (got ${player.version}, expected ${VERSION})`);
+      console.warn(
+        `did not load saved player: version mismatch of saved object (got ${player.version}, expected ${VERSION})`
+      );
     }
     return undefined;
   }
@@ -52,4 +53,16 @@ export class PlayerService {
     this.storageService.deletePlayer();
     this.highscoreService.addHighscore(player);
   }
+}
+
+export function createPlayer(
+  name: string,
+  score: number = 0,
+  version: number = VERSION
+): Player {
+  return {
+    name,
+    score,
+    version,
+  };
 }

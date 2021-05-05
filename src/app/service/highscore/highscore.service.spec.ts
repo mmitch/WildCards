@@ -21,7 +21,7 @@
 import { TestBed } from '@angular/core/testing';
 import { sub } from 'date-fns';
 import { Highscore } from 'src/app/model/highscore';
-import { Player } from 'src/app/model/player';
+import { createPlayer } from 'src/app/service/player/player.service';
 import { StorageService } from '../storage/storage.service';
 import { StorageServiceMock } from '../storage/storage.service.mock';
 
@@ -36,7 +36,7 @@ describe('HighscoreService', () => {
   beforeEach(() => {
     storageMock = new StorageServiceMock();
     TestBed.configureTestingModule({
-      providers: [ { provide: StorageService, useValue: storageMock } ]
+      providers: [{ provide: StorageService, useValue: storageMock }],
     });
     service = TestBed.inject(HighscoreService);
   });
@@ -67,8 +67,8 @@ describe('HighscoreService', () => {
     // given
     setExistingHighscores([
       existingHighscore('middle bar', 3, 3),
-      existingHighscore('late bar',   3, 2),
-      existingHighscore('early bar',  3, 5),
+      existingHighscore('late bar', 3, 2),
+      existingHighscore('early bar', 3, 5),
       existingHighscore('baz', 10, 0),
     ]);
 
@@ -126,11 +126,15 @@ describe('HighscoreService', () => {
 
   /*
    * test helper methods below
-  */
+   */
 
-  function existingHighscore(name: string, score: number, ageInDays: number): Highscore {
+  function existingHighscore(
+    name: string,
+    score: number,
+    ageInDays: number
+  ): Highscore {
     const date = sub(TODAY, { days: ageInDays });
-    return new Highscore({name, date, score});
+    return new Highscore({ name, date, score });
   }
 
   function setExistingHighscores(highscores: Highscore[]): void {
@@ -138,7 +142,6 @@ describe('HighscoreService', () => {
   }
 
   function addHighscore(name: string, score: number): void {
-    service.addHighscore(Player.withNameAndScore(name, score));
+    service.addHighscore(createPlayer(name, score));
   }
-
 });

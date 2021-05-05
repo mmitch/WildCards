@@ -24,7 +24,7 @@ import { HighscoreService } from '../highscore/highscore.service';
 import { StorageService } from '../storage/storage.service';
 import { StorageServiceMock } from '../storage/storage.service.mock';
 
-import { PlayerService } from './player.service';
+import { createPlayer, PlayerService } from './player.service';
 
 describe('PlayerService', () => {
   let storageServiceMock: StorageServiceMock;
@@ -52,7 +52,7 @@ describe('PlayerService', () => {
   beforeEach(() => {
     storageServiceMock = new StorageServiceMock();
     TestBed.configureTestingModule({
-      providers: [ { provide: StorageService, useValue: storageServiceMock } ],
+      providers: [{ provide: StorageService, useValue: storageServiceMock }],
     });
     highscoreService = TestBed.inject(HighscoreService);
     service = TestBed.inject(PlayerService);
@@ -126,5 +126,43 @@ describe('PlayerService', () => {
     expect(highscores.length).toBe(1);
     expect(highscores[0].name).toBe(PLAYER_UP_TO_DATE.name);
     expect(highscores[0].score).toBe(PLAYER_UP_TO_DATE.score);
+  });
+});
+
+describe('createPlayer()', () => {
+  it('should set default score and version when called only with a name', () => {
+    // given
+
+    // when
+    const player = createPlayer('foo');
+
+    // then
+    expect(player.name).toEqual('foo');
+    expect(player.score).toEqual(0);
+    expect(player.version).toEqual(VERSION);
+  });
+
+  it('should set default version when called only with a name and a score', () => {
+    // given
+
+    // when
+    const player = createPlayer('foo', 127);
+
+    // then
+    expect(player.name).toEqual('foo');
+    expect(player.score).toEqual(127);
+    expect(player.version).toEqual(VERSION);
+  });
+
+  it('should set all values when called with all values', () => {
+    // given
+
+    // when
+    const player = createPlayer('foo', 13, 5);
+
+    // then
+    expect(player.name).toEqual('foo');
+    expect(player.score).toEqual(13);
+    expect(player.version).toEqual(5);
   });
 });

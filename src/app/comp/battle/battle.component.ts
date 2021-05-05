@@ -20,16 +20,18 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Player } from 'src/app/model/player';
-import { PlayerService } from 'src/app/service/player/player.service';
+import {
+  PlayerService,
+  createPlayer,
+} from 'src/app/service/player/player.service';
 import { View } from 'src/app/view';
 
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
-  styleUrls: ['./battle.component.css']
+  styleUrls: ['./battle.component.css'],
 })
 export class BattleComponent implements OnInit {
-
   @Output() viewChange = new EventEmitter<View>();
 
   battleEnded = false;
@@ -38,18 +40,16 @@ export class BattleComponent implements OnInit {
 
   constructor(private playerService: PlayerService) {
     const savedPlayer = this.playerService.loadPlayer();
-    this.player = savedPlayer ? savedPlayer : Player.withName('Jane Doe');
+    this.player = savedPlayer ? savedPlayer : createPlayer('Jane Doe');
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public onAttack(): void {
     if (Math.random() < 0.7) {
       this.player.score++;
       // FIXME: add flash Animation here
-    }
-    else {
+    } else {
       this.battleEnded = true;
       this.playerService.onPlayerDeath(this.player);
     }

@@ -19,7 +19,7 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Player } from 'src/app/model/player';
+import { createPlayer } from 'src/app/service/player/player.service';
 import { StorageService } from 'src/app/service/storage/storage.service';
 import { StorageServiceMock } from 'src/app/service/storage/storage.service.mock';
 import { PlayerService } from 'src/app/service/player/player.service';
@@ -36,10 +36,9 @@ describe('MainMenuComponent', () => {
   beforeEach(async () => {
     const storageServiceMock = new StorageServiceMock();
     await TestBed.configureTestingModule({
-      declarations: [ MainMenuComponent ],
-      providers: [ { provide: StorageService, useValue: storageServiceMock } ],
-    })
-    .compileComponents();
+      declarations: [MainMenuComponent],
+      providers: [{ provide: StorageService, useValue: storageServiceMock }],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -83,7 +82,7 @@ describe('MainMenuComponent', () => {
 
   it('should request switch to the battle screen when the continue button is clicked and a saved player exists', () => {
     // given
-    playerService.savePlayer(Player.withName('test'));
+    playerService.savePlayer(createPlayer('test'));
     createComponent();
 
     // when
@@ -115,7 +114,7 @@ describe('MainMenuComponent', () => {
 
   it('should enable the continue button if there is a saved player', () => {
     // given
-    playerService.savePlayer(Player.withName('test'));
+    playerService.savePlayer(createPlayer('test'));
 
     // when
     createComponent();
@@ -139,5 +138,4 @@ describe('MainMenuComponent', () => {
   function getButton(id: string): HTMLButtonElement | null {
     return html.querySelector<HTMLButtonElement>(`button#${id}`);
   }
-
 });

@@ -20,16 +20,18 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Player } from 'src/app/model/player';
-import { PlayerService } from 'src/app/service/player/player.service';
+import {
+  PlayerService,
+  createPlayer,
+} from 'src/app/service/player/player.service';
 import { View } from 'src/app/view';
 
 @Component({
   selector: 'app-create-player',
   templateUrl: './create-player.component.html',
-  styleUrls: ['./create-player.component.css']
+  styleUrls: ['./create-player.component.css'],
 })
 export class CreatePlayerComponent implements OnInit {
-
   @Output() viewChange = new EventEmitter<View>();
 
   existingPlayer?: Player;
@@ -40,8 +42,7 @@ export class CreatePlayerComponent implements OnInit {
     this.existingPlayer = playerService.loadPlayer();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public onNameChanged(event: Event): void {
     if (event.target) {
@@ -58,7 +59,7 @@ export class CreatePlayerComponent implements OnInit {
     if (this.existingPlayer) {
       this.playerService.onPlayerDeath(this.existingPlayer);
     }
-    this.playerService.savePlayer(Player.withName(this.playerName));
+    this.playerService.savePlayer(createPlayer(this.playerName));
     this.viewChange.emit(View.BATTLE);
   }
 
