@@ -18,17 +18,25 @@
  * along with Wild Cards.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<div *ngIf="!battleEnded" class="nes-container is-rounded is-dark with-title" id="battle">
-    <p class="title">Battle round</p>
-    <p>Name: {{ player?.name }}</p>
-    <p>Score: {{ player?.score }}</p>
-    <button class="nes-btn is-primary" (click)="onAttack()">Attack</button>
-    <button class="nes-btn" (click)="onSave()">Save and return to title</button>
+<div
+  *ngIf="!battleEnded"
+  class="nes-container is-rounded is-dark with-title"
+  id="battle"
+>
+  <p class="title">Battle round</p>
+  <p>Name: {{ player.name }}</p>
+  <p>Score: {{ player.score }}</p>
+  <button class="nes-btn is-primary" (click)="onAttack()">Attack</button>
+  <button class="nes-btn" (click)="onSave()">Save and return to title</button>
 </div>
 
 <div *ngIf="battleEnded" class="nes-container with-title is-centered">
-    <p class="title">Battle lost</p>
-    <p><span class="nes-text is-error">{{ player?.name }} is dead.</span></p>
-    <p>You achieved a score of {{ player?.score }}.</p>
-    <button class="nes-btn" (click)="onReturnToMainMenu()">Return to Main Menu</button>
+  <p class="title">Battle lost</p>
+  <p>
+    <span class="nes-text is-error">{{ player.name }} is dead.</span>
+  </p>
+  <p>You achieved a score of {{ player.score }}.</p>
+  <button class="nes-btn" (click)="onReturnToMainMenu()">
+    Return to Main Menu
+  </button>
 </div>
