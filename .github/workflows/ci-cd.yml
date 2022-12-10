@@ -52,8 +52,7 @@ jobs:
           npm run build:prod --if-present
       - name: Run e2e tests
         run: |
-          npx webdriver-manager update --standalone=false --chrome=true --gecko=false --versions.chrome 98.0.4758.80
-          npm run e2e:ci
+          npm run e2e
 
   deploy:
     name: Deploy to GitHub Pages

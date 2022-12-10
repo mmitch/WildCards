@@ -7,6 +7,10 @@
 # Only exists if Bazel was run
 /bazel-out
 
+# ignore Cypress result artifacts
+/cypress/videos
+/cypress/screenshots
+
 # dependencies
 /node_modules
 
