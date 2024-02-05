@@ -30,7 +30,7 @@ jobs:
           npm run build --if-present
       - name: Run Karma tests and measure coverage
         run: npm run test:ci
-      - uses: codecov/codecov-action@v3  
+      - uses: codecov/codecov-action@v4  
 
   protractor:
     name: Production build and Protractor tests in browser matrix
